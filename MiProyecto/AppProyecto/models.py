@@ -7,7 +7,7 @@ class Trabajador(models.Model):
     id_trabajador = models.AutoField(primary_key=True)  # ID de Trabajador
     nombre = models.CharField(max_length=100)
     rut = models.CharField(max_length=20, unique=True)
-    genero = models.CharField(max_length=20, blank=True, null=True)
+    genero = models.BooleanField(null=True)
     direccion = models.CharField(max_length=200, blank=True, null=True)
     telefono = models.CharField(max_length=20, blank=True, null=True)
 

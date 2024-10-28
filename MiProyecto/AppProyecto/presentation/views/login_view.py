@@ -1,17 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from AppProyecto.business.services.auth_service import authenticate_user
+from AppProyecto.models import Usuario  # Importa el modelo desde AppProyecto
 
 def login_view(request):
-    if request.method == 'POST':
-        nombre_usuario = request.POST['nombre_usuario']  # Cambiado a nombre_usuario
-        contrasena = request.POST['contrasena']          # Cambiado a contrasena
-        usuario = authenticate_user(nombre_usuario, contrasena)
-        
-        if usuario:
-            # Aquí realizarías el login usando la sesión de Django
-            return redirect('home')
-        else:
-            messages.error(request, 'Nombre de usuario o contraseña incorrectos')
-    
-    return render(request, 'Login/login.html')
+    if request.method == 'POST':  # Verifica si el formulario fue enviado
+        nombre_usuario = request.POST['nombre_usuario']  # Obtiene el nombre de usuario
+        contrasena = request.POST['contrasena']  # Obtiene la contraseña
+
+        try:
+            # Intenta obtener el usuario
+            usuario = Usuario.objects.get(nombre_usuario=nombre_usuario, contrasena=contrasena)
+            messages.success(request, "Inicio de sesión exitoso.")  # Mensaje de éxito
+            return redirect('pagina_principal')  # Redirige a la página principal
+        except Usuario.DoesNotExist:
+            messages.error(request, "Nombre de usuario o contraseña incorrectos.")  # Mensaje de error
+
+    return render(request, 'Login/login.html')  # Renderiza la plantilla de login
