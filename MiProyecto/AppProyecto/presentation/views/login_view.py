@@ -15,4 +15,4 @@ def login_view(request):
         except Usuario.DoesNotExist:
             messages.error(request, "Nombre de usuario o contraseña incorrectos.")  # Mensaje de error
 
-    return render(request, 'Login/login.html')  # Renderiza la plantilla de login
+    return render(request, 'Login/login.html')  # Renderiza en la plantilla de login
