@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Empleados</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Asegúrate de tener configurado el static -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de Empleados</h1>
+        
+        <!-- Barra de búsqueda -->
+        <input type="text" id="searchBar" onkeyup="searchEmployee()" placeholder="Buscar empleado..." class="search-bar">
+        
+        <!-- Tabla de empleados -->
+        <table id="employeeTable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>RUT</th>
+                    <th>Género</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trabajador in trabajadores %}
+                <tr>
+                    <td>{{ trabajador.nombre }}</td>
+                    <td>{{ trabajador.rut }}</td>
+                    <td>{{ trabajador.genero }}</td>
+                    <td>{{ trabajador.direccion }}</td>
+                    <td>{{ trabajador.telefono }}</td>
+                    <td>
+                        <button><a href="{% url 'trabajador_update' trabajador.id_trabajador %}">Editar</a></button>
+                        <button><a href="{% url 'trabajador_delete' trabajador.id_trabajador %}">Eliminar</a></button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No hay empleados registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="button-group">
+            <a href="{% url 'trabajadores_home' %}">
+                <button>Volver</button>
+            </a>
+        </div>
+        <!-- Modal para ver detalles del empleado -->
+        <div id="employeeModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Detalles del Empleado</h2>
+                <p id="employeeDetails"></p>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="{% static 'js/scripts.js' %}"></script> <!-- Asegúrate de tener configurado el static -->
+</body>
+</html>

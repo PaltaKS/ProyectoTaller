@@ -5,6 +5,11 @@ def pagina_principal_view(request):
     # Puedes agregar lógica aquí para obtener datos si es necesario
     return render(request, 'Login/home.html') 
 
+
+def trabajadores_home(request):
+    return render(request, 'Trabajadores/trabajador_home.html')
+
+
 def custom_logout_view(request):
     # Lógica para cerrar sesión
     if 'id_usuario' in request.session:

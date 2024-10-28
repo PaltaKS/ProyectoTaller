@@ -1,0 +1,46 @@
+<!-- presentation/templates/trabajador/trabajador_create.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Trabajador</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Agregar Nuevo Trabajador</h1>
+        <form method="POST" action="{% url 'trabajador_create' %}">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="rut">RUT:</label>
+            <input type="text" id="rut" name="rut" required>
+
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" required>
+                <!-- Aquí puedes llenar las opciones de género desde tu base de datos -->
+                {% for genero in generos %}
+                    <option value="{{ genero.id }}">{{ genero.nombre }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion">
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono">
+
+            <button type="submit">Guardar Trabajador</button>
+        </form>
+        <div class="button-group">
+            <a href="{% url 'trabajadores_home' %}">
+                <button>Volver</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

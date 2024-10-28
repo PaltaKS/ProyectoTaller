@@ -1,0 +1,44 @@
+<!-- AppProyecto/presentation/templates/trabajador_home.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Gestión de Trabajadores</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido a la Gestión de Trabajadores</h1>
+        
+        <div class="menu">
+            <h2>Opciones</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'trabajador_list' %}">
+                        <button>Listar Trabajadores</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'trabajador_create' %}">
+                        <button>Agregar Nuevo Trabajador</button>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'pagina_principal' %}">
+                        <button>Volver</button>
+                    </a>
+                </li>
+
+
+                <!-- Puedes agregar más enlaces según las funcionalidades que necesites -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
+

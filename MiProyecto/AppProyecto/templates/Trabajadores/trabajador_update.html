@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Trabajador</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Asegúrate de que la ruta a tu CSS sea correcta -->
+</head>
+<body>
+    <div class="container">
+        <h1>Actualizar Trabajador</h1>
+
+        <!-- Formulario en trabajador_update.html -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" value="{{ trabajador.nombre }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="rut">RUT:</label>
+                    <input type="text" id="rut" name="rut" value="{{ trabajador.rut }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required>
+                        {% for genero in generos %}
+                            <option value="{{ genero.id_genero }}" {% if genero.id_genero == trabajador.genero.id_genero %}selected{% endif %}>{{ genero.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" value="{{ trabajador.direccion }}">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" value="{{ trabajador.telefono }}">
+                </div>
+                <button type="submit">Actualizar Trabajador</button>
+            </form>
+            <div class="button-group">
+                <a href="{% url 'trabajador_list' %}">
+                    <button>Volver a la lista de trabajadores</button>
+                </a>
+            </div>
+    </div>
+</body>
+</html>
