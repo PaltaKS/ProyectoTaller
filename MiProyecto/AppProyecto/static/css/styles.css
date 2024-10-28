@@ -1,0 +1,204 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    flex: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    cursor: pointer;
+}
+
+
+form {
+    /* Estilo para el formulario: organización en grid */
+    display: grid;
+    gap: 15px; /* Espacio entre los elementos del formulario */
+}
+.form-row {
+    /* Cada fila del formulario con múltiples elementos */
+    display: flex; /* Hace que los elementos hijos se organicen en una fila */
+    gap: 15px; /* Espacio entre los elementos de la fila */
+}
+.form-group {
+    /* Grupo de campos de formulario, permite que cada campo ocupe el mismo espacio */
+    flex: 1;
+}
+label {
+    /* Estilo para las etiquetas de los campos */
+    display: block;
+    margin-bottom: 5px; /* Espacio debajo de la etiqueta */
+    color: #666; /* Color del texto de la etiqueta */
+}
+input, select {
+    /* Estilo para los campos de entrada y listas desplegables */
+    width: 100%; /* Los campos ocupan todo el ancho del contenedor */
+    padding: 8px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del campo */
+}
+button {
+    /* Estilo para el botón */
+    background-color: #4CAF50; /* Fondo verde */
+    color: white; /* Texto blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a mano al pasar sobre el botón */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    font-size: 16px; /* Tamaño del texto */
+}
+button:hover {
+    /* Cambia el color del botón al pasar el cursor por encima */
+    background-color: #45a049;
+}
+
+
+ul {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 50px;
+}
+li {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* H15 */
+
+.profile {
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+strong {
+    color: #333;
+}
+
+
+/* HU12 */
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f4f4f4;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
