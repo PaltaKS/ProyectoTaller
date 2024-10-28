@@ -1,0 +1,29 @@
+MiProyecto/
+├── MiProyecto/
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── MiProyectoAPP/
+│   ├── business/                  # Capa de negocio
+│   │   ├── services/               # Servicios o lógica de negocio
+│   │   │   └── auth_service.py     # Ejemplo: autenticación de usuarios
+│   │   └── __init__.py
+│   ├── data/                       # Capa de datos
+│   │   ├── repositories/           # Repositorios para la gestión de datos
+│   │   │   └── user_repository.py  # Ejemplo: repositorio de usuarios
+│   │   └── __init__.py
+│   ├── presentation/               # Capa de presentación
+│   │   ├── views/                  # Vistas de Django
+│   │   │   └── login_view.py       # Ejemplo: vista de login
+│   │   └── __init__.py
+│   ├── templates/
+│   │   └── Login/
+│   │       └── login.html
+│   ├── static/
+│   │   └── css/
+│   │       └── styles.css
+│   ├── models.py
+│   ├── urls.py
+│   ├── __init__.py
+└── manage.py

@@ -20,5 +20,5 @@ from AppProyecto.presentation.views import login_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('MiProyectoAPP.urls'))
+    path('', include('AppProyecto.urls'))
 ]
