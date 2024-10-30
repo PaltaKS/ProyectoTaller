@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.hashers import make_password
 # Create your models here.
 
 
@@ -93,6 +93,12 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nombre_usuario
+
+    def save(self, *args, **kwargs):
+        # Hashear la contraseña antes de guardar
+        if self.contrasena:  # Solo hasheamos si la contraseña ha sido proporcionada
+            self.contrasena = make_password(self.contrasena)
+        super(Usuario, self).save(*args, **kwargs)
 
 
 class ContactoEmergencia(models.Model):

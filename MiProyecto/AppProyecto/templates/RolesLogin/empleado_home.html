@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Empleado</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Bienvenido, Empleado</h1>
+    <p>Acceso a funcionalidades de empleado aquí.</p>
+    <a href="{% url 'login' %}">Cerrar sesión</a>
+</body>
+</html>

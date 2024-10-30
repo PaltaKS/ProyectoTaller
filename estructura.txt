@@ -1,5 +1,5 @@
 MiProyecto/
-├── MiProyecto/
+├── AppProyecto/
 │   ├── settings.py
 │   ├── urls.py
 │   ├── wsgi.py
