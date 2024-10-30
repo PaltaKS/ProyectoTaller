@@ -1,44 +1,63 @@
-<!-- presentation/templates/trabajador/trabajador_create.html -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"> <!-- Define el idioma de la página como español -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Trabajador</title>
-    {% load static %} 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <meta charset="UTF-8"> <!-- Establece la codificación de caracteres en UTF-8 para admitir caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la vista para dispositivos móviles -->
+    <title>Agregar Trabajador</title> <!-- Título de la página que aparece en la pestaña del navegador -->
+    
+    {% load static %} <!-- Carga la etiqueta 'static' de Django para usar archivos estáticos -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> <!-- Enlaza el archivo de estilos CSS desde la carpeta 'static' -->
 </head>
 
 <body>
-    <div class="container">
-        <h1>Agregar Nuevo Trabajador</h1>
-        <form method="POST" action="{% url 'trabajador_create' %}">
-            {% csrf_token %}
+    <div class="container"> <!-- Contenedor principal de la página -->
+        <h1>Agregar Nuevo Trabajador</h1> <!-- Título de la sección -->
+
+        <!-- Bloque para mostrar mensajes de éxito o error -->
+        {% if messages %} <!-- Comprueba si hay mensajes (éxito o error) en la vista -->
+            {% for message in messages %} <!-- Itera sobre cada mensaje disponible -->
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"> <!-- Aplica clases de CSS según el tipo de mensaje -->
+                    {{ message }} <!-- Muestra el texto del mensaje -->
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Formulario para agregar un nuevo trabajador -->
+        <form method="POST" action="{% url 'trabajador_create' %}"> <!-- Envia los datos a la vista 'trabajador_create' mediante POST -->
+            {% csrf_token %} <!-- Token CSRF para proteger contra ataques Cross-Site Request Forgery -->
+            
+            <!-- Campo para ingresar el nombre -->
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" required> <!-- Campo de entrada de texto obligatorio para el nombre del trabajador -->
 
+            <!-- Campo para ingresar el RUT -->
             <label for="rut">RUT:</label>
-            <input type="text" id="rut" name="rut" required>
+            <input type="text" id="rut" name="rut" required> <!-- Campo de entrada de texto obligatorio para el RUT del trabajador -->
 
+            <!-- Selección de género -->
             <label for="genero">Género:</label>
-            <select id="genero" name="genero" required>
-                <!-- Aquí puedes llenar las opciones de género desde tu base de datos -->
-                {% for genero in generos %}
-                    <option value="{{ genero.id }}">{{ genero.nombre }}</option>
+            <select id="genero" name="genero" required> <!-- Menú desplegable obligatorio para seleccionar el género -->
+                {% for genero in generos %} <!-- Itera sobre la lista de géneros proporcionada desde la vista -->
+                    <option value="{{ genero.id }}">{{ genero.nombre }}</option> <!-- Opción con el ID y nombre del género -->
                 {% endfor %}
             </select>
 
+            <!-- Campo para ingresar la dirección -->
             <label for="direccion">Dirección:</label>
-            <input type="text" id="direccion" name="direccion">
+            <input type="text" id="direccion" name="direccion"> <!-- Campo de entrada de texto para la dirección del trabajador -->
 
+            <!-- Campo para ingresar el teléfono -->
             <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" name="telefono">
+            <input type="text" id="telefono" name="telefono"> <!-- Campo de entrada de texto para el teléfono del trabajador -->
 
-            <button type="submit">Guardar Trabajador</button>
+            <!-- Botón para enviar el formulario -->
+            <button type="submit">Guardar Trabajador</button> <!-- Botón para enviar los datos del formulario -->
         </form>
-        <div class="button-group">
-            <a href="{% url 'trabajadores_home' %}">
-                <button>Volver</button>
+
+        <!-- Grupo de botones adicionales -->
+        <div class="button-group"> <!-- Contenedor para botones adicionales -->
+            <a href="{% url 'trabajadores_home' %}"> <!-- Enlace a la vista 'trabajadores_home' -->
+                <button>Volver</button> <!-- Botón para regresar a la vista principal de trabajadores -->
             </a>
         </div>
     </div>

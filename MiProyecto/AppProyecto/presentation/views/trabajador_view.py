@@ -1,6 +1,7 @@
 # presentation/views/trabajador_view.py
 from django.shortcuts import render, redirect, get_object_or_404
 from AppProyecto.models import Trabajador, Genero
+from django.contrib import messages
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 
@@ -15,25 +16,35 @@ def trabajador_create(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         rut = request.POST.get('rut')
-        genero_id = request.POST.get('genero')  # Aquí obtienes el ID del género desde el formulario
+        genero_id = request.POST.get('genero')
         direccion = request.POST.get('direccion')
         telefono = request.POST.get('telefono')
+
         # Asegúrate de que el ID del género esté presente
-        if genero_id:
-            genero = Genero.objects.get(id_genero=genero_id)  # Obtén el objeto Genero usando el ID
-        else:
-            genero = None  # O maneja el caso según tu lógica
+        genero = Genero.objects.get(id_genero=genero_id) if genero_id else None
+
+        # Verificar si el trabajador con el mismo RUT ya existe
+        if Trabajador.objects.filter(rut=rut).exists():
+            messages.error(request, f'El RUT {rut} ya está registrado para otro trabajador.')
+            generos = Genero.objects.all()
+            return render(request, 'Trabajadores/trabajador_create.html', {'generos': generos})
+
         # Crear el trabajador
-        trabajador = Trabajador(
-            nombre=nombre,
-            rut=rut,
-            genero=genero,
-            direccion=direccion,
-            telefono=telefono
-        )
-        trabajador.save()
-        return redirect('trabajador_list')  # Redirige a la lista de trabajadores
-    generos = Genero.objects.all()  # Obtén todos los géneros para mostrarlos en el formulario
+        try:
+            trabajador = Trabajador(
+                nombre=nombre,
+                rut=rut,
+                genero=genero,
+                direccion=direccion,
+                telefono=telefono
+            )
+            trabajador.save()
+            messages.success(request, 'Trabajador creado exitosamente.')
+            return redirect('trabajador_list')
+        except IntegrityError:
+            messages.error(request, 'Error al crear el trabajador, por favor intenta de nuevo.')
+
+    generos = Genero.objects.all()
     return render(request, 'Trabajadores/trabajador_create.html', {'generos': generos})
 
 # Editar Trabajador
