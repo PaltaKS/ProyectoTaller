@@ -1,0 +1,48 @@
+<!-- templates/usuarios/formulario.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if usuario %}Editar Usuario{% else %}Crear Usuario{% endif %}</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>{% if usuario %}Editar Usuario{% else %}Crear Usuario{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="nombre_usuario">Nombre de Usuario:</label>
+        <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+        <br>
+
+        <label for="trabajador">Trabajador:</label>
+        <select id="trabajador" name="trabajador" required>
+            <option value="">Seleccione un trabajador</option>
+            {% for trabajador in trabajadores %}
+                <option value="{{ trabajador.rut }}" {% if usuario and usuario.trabajador.rut == trabajador.rut %}selected{% endif %}>{{ trabajador.nombre }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol" required>
+            <option value="">Seleccione un rol</option>
+            {% for rol in roles %}
+                <option value="{{ rol.id_rol }}" {% if usuario and usuario.rol and usuario.rol.id_rol == rol.id_rol %}selected{% endif %}>{{ rol.nombre }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" {% if usuario %}placeholder="Dejar en blanco si no deseas cambiar"{% endif %}>
+        <br>
+
+        <button type="submit">{% if usuario %}Actualizar{% else %}Crear{% endif %}</button>
+        <a href="{% url 'lista_usuarios' %}"><button>Cancelar</button></a>
+    </form>
+    </div>
+</body>
+</html>

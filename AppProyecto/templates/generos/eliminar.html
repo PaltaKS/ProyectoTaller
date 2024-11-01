@@ -1,0 +1,14 @@
+<!-- templates/genero/eliminar.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Eliminar Género</title></head>
+<body>
+    <h1>Confirmar Eliminación</h1>
+    <p>¿Seguro que deseas eliminar el género {{ genero.nombre }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+        <a href="{% url 'lista_generos' %}">Cancelar</a>
+    </form>
+</body>
+</html>

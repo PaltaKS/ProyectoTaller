@@ -1,0 +1,33 @@
+<!-- AppProyecto/templates/home.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Dashboard</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido, {{ usuario.nombre_usuario }}</h1>
+        <h2>Dashboard</h2>
+        <p>Selecciona una opción:</p>
+        
+        <div class="actions">
+            {% if usuario.rol.nombre == 'ADMIN' %}
+                <a href="{% url 'lista_usuarios' %}"><button>Gestionar Usuarios</button></a>
+                <a href="{% url 'listar_trabajadores' %}"><button>Gestionar Trabajadores</button></a>
+            {% elif usuario.rol.nombre == 'RRHH' %}
+                <a href="{% url 'listar_trabajadores' %}"><Button>Gestionar Trabajadores</Button></a>
+            {% elif usuario.rol.nombre == 'EMPLEADO' %}
+                <a href=><button>Ver Mi Perfil</button></a>
+            {% endif %}
+        </div>
+        
+        <div class="footer">
+            <a href="{% url 'logout' %}" class="btn"><button>Cerrar Sesión</button></a>
+        </div>
+    </div>
+</body>
+</html>

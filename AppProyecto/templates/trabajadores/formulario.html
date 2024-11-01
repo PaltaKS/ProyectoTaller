@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if trabajador %}Editar Trabajador{% else %}Crear Trabajador{% endif %}</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{% if trabajador %}Editar Trabajador{% else %}Crear Trabajador{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="rut">RUT:</label>
+        <input type="text" name="rut" value="{{ trabajador.rut }}" {% if trabajador %}readonly{% endif %} required><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" value="{{ trabajador.nombre }}" required><br>
+
+        <label for="genero">Género:</label>
+        <select name="genero" required>
+            {% for genero in generos %}
+                <option value="{{ genero.id_genero }}" {% if genero.id_genero == trabajador.genero.id_genero %}selected{% endif %}>{{ genero.nombre }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" name="telefono" value="{{ trabajador.telefono }}"><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" value="{{ trabajador.direccion }}"><br>
+
+        <button type="submit">{% if trabajador %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+
+    <a href="{% url 'listar_trabajadores' %}"><button>Volver a la lista</button></a>
+</body>
+</html>

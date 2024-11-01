@@ -1,0 +1,14 @@
+<!-- templates/genero/formulario.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Formulario de Género</title></head>
+<body>
+    <h1>{{ genero.id_genero|default:'Crear' }} Género</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="{{ genero.nombre|default:'' }}">
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

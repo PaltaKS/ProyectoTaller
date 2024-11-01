@@ -1,0 +1,51 @@
+<!-- templates/trabajadores/lista.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Trabajadores</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Trabajadores</h1>
+        <a href="{% url 'crear_trabajador' %}"><button>Crear nuevo trabajador</button></a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>RUT</th>
+                        <th>Nombre</th>
+                        <th>Género</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trabajador in trabajadores %}
+                    <tr>
+                        <td>{{ trabajador.rut }}</td>
+                        <td>{{ trabajador.nombre }}</td>
+                        <td>
+                            {% if trabajador.genero %}
+                                {{ trabajador.genero.nombre }}
+                            {% else %}
+                                Sin género
+                            {% endif %}
+                        </td>
+                        <td>{{ trabajador.direccion }}</td>
+                        <td>{{ trabajador.telefono }}</td>
+                        <td>
+                            <a href="{% url 'actualizar_trabajador' trabajador.rut %}"><button class="miniButton">Editar</button></a>
+                            <a href="{% url 'eliminar_trabajador' trabajador.rut %}"><button class="miniButton">Eliminar</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'home' %}"><button>Regresar al Home</button></a>
+    </div>
+    
+</body>
+</html>
