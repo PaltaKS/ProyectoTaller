@@ -18,8 +18,6 @@ class UsuarioRepository:
     def eliminar(usuario):
         usuario.delete()
 
-
-class UsuarioRepository:
     @staticmethod
     def get_user_by_username(nombre_usuario):
         try:

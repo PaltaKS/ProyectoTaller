@@ -1,0 +1,44 @@
+<!-- contacto_emergencia_lista.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Contactos de Emergencia</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Contactos de Emergencia</h1>
+        <a href="{% url 'crear_contacto' %}"><button>Nuevo Contacto</button></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Relación</th>
+                    <th>Teléfono</th>
+                    <th>Trabajador Relacionado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contacto in contactos %}
+                    <tr>
+                        <td>{{ contacto.nombre }}</td>
+                        <td>{{ contacto.relacion }}</td>
+                        <td>{{ contacto.telefono }}</td>
+                        <td>{{ contacto.trabajador.nombre }}</td>
+                        <td>
+                            <a href="{% url 'editar_contacto' contacto.id_contacto %}"><button class="miniButton">Editar</button></a>
+                            <a href="{% url 'eliminar_contacto' contacto.id_contacto %}"><button class="miniButton">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'home' %}"><button>Regresar al Home</button></a>
+    </div>
+</body>
+</html>

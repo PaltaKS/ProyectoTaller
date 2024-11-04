@@ -1,7 +1,8 @@
 from django.urls import path
-from AppProyecto.views.trabajador_views import listar_trabajadores, crear_trabajador,actualizar_trabajador, eliminar_trabajador
-from AppProyecto.views.genero_views import listar_generos, crear_genero, actualizar_genero, eliminar_genero
-from AppProyecto.views.usuario_view import listar_usuarios, crear_usuario, actualizar_usuario, eliminar_usuario
+from AppProyecto.views.trabajador_views import listar_trabajadores, crear_trabajador,actualizar_trabajador, eliminar_trabajador  # Trabajador
+from AppProyecto.views.genero_views import listar_generos, crear_genero, actualizar_genero, eliminar_genero # Genero
+from AppProyecto.views.usuario_view import listar_usuarios, crear_usuario, actualizar_usuario, eliminar_usuario  # Usuarios
+from AppProyecto.views.contacto_emergencia_views import listar_contactos, crear_contacto, editar_contacto, eliminar_contacto  #Contactos de Emergencia
 from AppProyecto.views import trabajador_views
 from AppProyecto.views.home_views import home_view
 from AppProyecto.views.login_views import login_view
@@ -28,4 +29,11 @@ urlpatterns = [
     path('usuarios/crear/', crear_usuario, name='crear_usuario'),
     path('usuarios/editar/<int:id_usuario>/', actualizar_usuario, name='actualizar_usuario'),
     path('usuarios/eliminar/<int:id_usuario>/', eliminar_usuario, name='eliminar_usuario'),
+
+    path('contactos/nuevo/', crear_contacto, name='crear_contacto'),
+    path('contactos/', listar_contactos, name='listar_contactos'),
+    path('contactos/editar/<int:id_contacto>/', editar_contacto, name='editar_contacto'),
+    path('contactos/eliminar/<int:id_contacto>/', eliminar_contacto, name='eliminar_contacto'),
+
+
 ]

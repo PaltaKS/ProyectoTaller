@@ -1,0 +1,39 @@
+<!-- contacto_emergencia_form.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if contacto %}Editar{% else %}Crear{% endif %} Contacto de Emergencia</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{% if contacto %}Editar{% else %}Crear{% endif %} Contacto de Emergencia</h1>
+        <form method="POST" action="{% url 'crear_contacto' %}">
+            {% csrf_token %}
+            
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" required>
+        
+            <label for="relacion">Relación:</label>
+            <input type="text" name="relacion">
+        
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" required>
+        
+            <label for="trabajador">Trabajador:</label>
+            <select name="trabajador" required>
+                {% for trabajador in trabajadores %}
+                    <option value="{{ trabajador.rut }}">{{ trabajador.nombre }}</option>
+                {% endfor %}
+            </select>
+        
+            <button type="submit">Crear Contacto de Emergencia</button>
+        </form>
+        <a href="{% url 'listar_contactos' %}"><button>Volver a la lista de contactos</button></a>
+    </div>
+</body>
+</html>

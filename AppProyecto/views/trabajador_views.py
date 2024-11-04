@@ -2,7 +2,6 @@
 from AppProyecto.models import Trabajador, Genero
 from django.shortcuts import render, redirect, get_object_or_404
 from AppProyecto.services.trabajador_service import TrabajadorService
-from AppProyecto.forms.forms import TrabajadorForm  # Asegúrate de crear este formulario
 
 def listar_trabajadores(request):
     trabajadores = TrabajadorService.listar_trabajadores()
@@ -10,15 +9,26 @@ def listar_trabajadores(request):
 
 def crear_trabajador(request):
     if request.method == 'POST':
-        form = TrabajadorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('listar_trabajadores')  # Redirige a la lista de trabajadores después de crear
-    else:
-        form = TrabajadorForm()
-    
-    generos = Genero.objects.all()
-    return render(request, 'trabajadores/formulario.html', {'form': form, 'generos': generos})
+        # Obtener datos del formulario
+        rut = request.POST.get('rut')
+        nombre = request.POST.get('nombre')
+        genero_id = request.POST.get('genero')  # ID del género
+        direccion = request.POST.get('direccion')
+        telefono = request.POST.get('telefono')
+
+        # Crear y guardar el trabajador
+        nuevo_trabajador = Trabajador(
+            rut=rut,
+            nombre=nombre,
+            genero_id=genero_id,  # Asignar el género
+            direccion=direccion,
+            telefono=telefono
+        )
+        nuevo_trabajador.save()  # Guardar el trabajador
+        return redirect('lista_trabajadores')  # Redirigir a la lista de trabajadores
+
+    generos = Genero.objects.all()  # Obtener todos los géneros
+    return render(request, 'trabajadores/formulario.html', {'generos': generos})
 
 def actualizar_trabajador(request, rut):
     trabajador = get_object_or_404(Trabajador, rut=rut)

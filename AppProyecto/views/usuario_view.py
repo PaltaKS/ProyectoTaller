@@ -1,7 +1,5 @@
 # views/usuario_view.py
 from django.shortcuts import render, redirect, get_object_or_404
-from AppProyecto.services.usuario_service import UsuarioService
-from django.contrib import messages
 from AppProyecto.models import Usuario, Rol, Trabajador
 
 def listar_usuarios(request):

@@ -1,8 +1,5 @@
-# AppProyecto/views/genero_views.py
-
 from django.shortcuts import render, redirect
 from AppProyecto.services.genero_service import GeneroService
-from AppProyecto.forms.forms import GeneroForm  # Asegúrate de crear este formulario
 
 def listar_generos(request):
     generos = GeneroService.listar_generos()
