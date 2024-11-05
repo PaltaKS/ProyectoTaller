@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Carga Familiar</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Eliminar Carga Familiar</h1>
+    <p>¿Estás seguro de que deseas eliminar la carga familiar: <strong>{{ carga_familiar.nombre }}</strong>?</p>
+    <form method="post" action="">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+        <a href="{% url 'listar_cargas_familiares' %}">Cancelar</a>
+    </form>
+</body>
+</html>

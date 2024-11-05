@@ -1,202 +1,243 @@
 :root {
-    /* Definición de variables de color para un fácil mantenimiento */
-    --color-primary: #5cb85c;   /* Color principal de los botones */
-    --color-hover: #748374;     /* Color de los botones al pasar el cursor */
-    --color-background: #f2e6d0; /* Color de fondo de la página (cambiado a beige claro) */
-    --color-text: #333;          /* Color de texto general */
+    /* Definición de variables de color para facilitar el mantenimiento y la coherencia en el diseño */
+    --color-primary: #4A90E2;       /* Color azul principal para los botones */
+    --color-hover: #2C6BB2;         /* Color azul más oscuro para el estado hover de los botones */
+    --color-background: #F0F4F8;    /* Color gris claro para el fondo de la página */
+    --color-text: #333;             /* Color gris oscuro para el texto principal */
+    --color-container-bg: #FFFFFF;  /* Color de fondo blanco para los contenedores */
+    --color-border: #D1D5DB;        /* Color gris claro para los bordes de los elementos */
 }
 
-/* General styles */
+/* Estilos generales para el cuerpo de la página */
 body {
-    font-family: Arial, sans-serif; /* Fuente general de la página */
-    background-color: var(--color-background); /* Fondo de la página */
-    margin: 0; /* Sin márgenes */
-    padding: 20px; /* Espaciado interno */
-
+    font-family: Arial, sans-serif;  /* Tipo de letra para el texto */
+    background-color: var(--color-background);  /* Aplicación del color de fondo definido */
+    margin: 0;                       /* Sin margen alrededor del cuerpo */
+    padding: 20px;                   /* Espacio interno del cuerpo */
+    color: var(--color-text);        /* Color del texto definido anteriormente */
 }
 
+/* Estilo para contenedores principales */
 .container {
-    max-width: 800px; /* Ancho máximo del contenedor */
-    margin: auto; /* Centrar el contenedor */
-    background-color: #fff; /* Color de fondo del contenedor */
-    padding: 20px; /* Espaciado interno del contenedor */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
+    max-width: 800px;               /* Ancho máximo del contenedor */
+    margin: auto;                   /* Centrado automático del contenedor */
+    background-color: var(--color-container-bg); /* Fondo blanco para el contenedor */
+    padding: 20px;                  /* Espacio interno del contenedor */
+    border-radius: 8px;             /* Bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    position: absolute;             /* Posicionamiento absoluto para centrar en la pantalla */
+    top: 50%;                       /* Desplazamiento desde la parte superior */
+    left: 50%;                      /* Desplazamiento desde la izquierda */
+    transform: translate(-50%, -50%); /* Centrando el contenedor en la pantalla */
 }
 
+/* Estilo para encabezados */
 h1, h2 {
-    text-align: center; /* Centrar títulos */
+    text-align: center;             /* Centrar texto en los encabezados */
+    color: var(--color-primary);    /* Aplicar color primario a los encabezados */
 }
 
+/* Estilo para la barra de búsqueda */
 .search-bar {
-    width: 100%; /* Ancho completo de la barra de búsqueda */
-    padding: 10px; /* Espaciado interno */
-    margin-bottom: 20px; /* Espaciado inferior */
-    border: 1px solid #ddd; /* Borde gris claro */
-    border-radius: 5px; /* Bordes redondeados */
+    width: 100%;                   /* Ancho completo de la barra de búsqueda */
+    padding: 10px;                 /* Espacio interno */
+    margin-bottom: 20px;           /* Espacio debajo de la barra de búsqueda */
+    border: 1px solid var(--color-border); /* Borde delgado en color gris claro */
+    border-radius: 5px;            /* Bordes redondeados */
 }
 
+/* Estilo para tablas */
 table {
-    width: 100%; /* Ancho completo de la tabla */
-    border-collapse: collapse; /* Colapsar bordes de la tabla */
-    margin-bottom: 20px; /* Espaciado inferior */
+    width: 100%;                   /* Ancho completo de la tabla */
+    border-collapse: collapse;     /* Colapsar bordes de la tabla para una mejor apariencia */
+    margin-bottom: 20px;           /* Espacio debajo de la tabla */
 }
 
+/* Estilo para celdas de encabezado y contenido de la tabla */
 th, td {
-    text-align: left; /* Alinear texto a la izquierda */
-    padding: 12px; /* Espaciado interno en celdas */
-    border-bottom: 1px solid #ddd; /* Borde inferior gris claro */
+    text-align: left;              /* Alinear texto a la izquierda */
+    padding: 12px;                 /* Espacio interno de las celdas */
+    border-bottom: 1px solid var(--color-border); /* Borde inferior de las celdas */
 }
 
+
+/* Contenedor para los botones */
 .button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
+    display: flex;                     /* Usar flexbox para organizar los botones */
+    flex-direction: column;            /* Organizar botones en una columna */
+    gap: 8px;                          /* Espacio entre los botones */
+    align-items: center;               /* Centrar los botones horizontalmente */
 }
 
+/* Estilo para enlaces */
 a {
-    color: white;
+    color: white;                      /* Color blanco para el texto de los enlaces */
 }
 
+/* Estilo para los botones */
 button {
     background-color: var(--color-primary); /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    padding: 6px 12px; /* Espaciado interno reducido para menor altura */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambiar cursor al pasar el mouse */
-    margin: 10px; /* Espaciado entre botones */
-    width: 800px;
-    height: 30px;
+    color: white;                       /* Color del texto en el botón */
+    padding: 6px 12px;                 /* Espaciado interno del botón */
+    border-radius: 5px;                /* Bordes redondeados del botón */
+    cursor: pointer;                    /* Cambiar el cursor a puntero al pasar el mouse */
+    margin: 10px auto;                 /* Espaciado y centrado automático del botón */
+    width: 800px;                       /* Ancho fijo para los botones */
+    height: 30px;                       /* Altura fija para los botones */
 }
 
+/* Estilo para el efecto hover en los botones */
 button:hover {
-    background-color: var(--color-hover); /* Cambiar color al pasar el cursor */
+    background-color: var(--color-hover); /* Color de fondo al pasar el mouse sobre el botón */
 }
 
-.miniButton{
-    width: 150px;
-    height: 25px;
-    margin: 5px;
+/* Estilo para botones mini */
+.miniButton {
+    width: 150px;                       /* Ancho fijo para los botones mini */
+    height: 25px;                       /* Altura fija para los botones mini */
+    margin: 5px;                        /* Espaciado alrededor del botón mini */
 }
 
-/* Estilo para los botones en la tabla */
+/* Estilo para los botones dentro de la tabla */
 table button {
-    margin: 0 10px; /* Espacio horizontal entre los botones */
-    padding: 5px 10px; /* Espaciado interno para hacerlos menos altos */
-    background-color: #5cb85c; /* Color de fondo */
-    color: white; /* Color del texto */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    margin: 0 10px;                    /* Espaciado horizontal de los botones dentro de la tabla */
+    padding: 5px 10px;                 /* Espaciado interno de los botones de la tabla */
+    background-color: var(--color-primary); /* Color de fondo de los botones de la tabla */
+    color: white;                       /* Color del texto en los botones de la tabla */
+    border-radius: 4px;                /* Bordes redondeados en los botones de la tabla */
+    cursor: pointer;                    /* Cambiar el cursor a puntero al pasar el mouse */
+    transition: background-color 0.3s ease; /* Efecto de transición suave para el hover */
 }
 
+/* Estilo para el efecto hover en los botones dentro de la tabla */
 table button:hover {
-    background-color: #4cae4c; /* Color de fondo al pasar el mouse */
+    background-color: var(--color-hover); /* Color de fondo al pasar el mouse sobre los botones de la tabla */
 }
 
-/* Modal styles */
+
+/* Estilos para el modal */
 .modal {
-    display: none; /* Ocultar el modal por defecto */
-    position: fixed; /* Posición fija en la pantalla */
-    z-index: 1; /* Asegurarse de que esté por encima de otros elementos */
-    left: 0; 
-    top: 0; 
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: none;                         /* Ocultar el modal por defecto */
+    position: fixed;                      /* Posicionar el modal de forma fija en la pantalla */
+    z-index: 1;                           /* Asegurar que el modal esté encima de otros elementos */
+    left: 0;                              /* Alinear el modal a la izquierda */
+    top: 0;                               /* Alinear el modal en la parte superior */
+    width: 100%;                          /* Ancho del modal ocupará toda la pantalla */
+    height: 100%;                         /* Alto del modal ocupará toda la pantalla */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para el modal */
 }
 
+/* Contenido del modal */
 .modal-content {
-    background-color: #fff; /* Color de fondo del contenido del modal */
-    margin: 15% auto; /* Margen superior e inferior automático para centrar */
-    padding: 20px; /* Espaciado interno del contenido del modal */
-    border-radius: 10px; /* Bordes redondeados */
-    width: 50%; /* Ancho del contenido del modal */
-    text-align: center; /* Centrar texto en el modal */
+    background-color: var(--color-container-bg); /* Fondo del contenido del modal */
+    margin: 15% auto;                          /* Centrar el contenido en el modal */
+    padding: 20px;                             /* Espaciado interno del contenido del modal */
+    border-radius: 10px;                       /* Bordes redondeados del contenido del modal */
+    width: 50%;                                /* Ancho del contenido del modal */
+    text-align: center;                        /* Centrar texto dentro del modal */
 }
 
+/* Estilo para el botón de cerrar el modal */
 .close {
-    color: #aaa; /* Color del texto de cierre */
-    float: right; /* Alinear a la derecha */
-    font-size: 28px; /* Tamaño de fuente del botón de cierre */
-    font-weight: bold; /* Negrita */
+    color: var(--color-text);                  /* Color del texto del botón de cerrar */
+    float: right;                              /* Alinear el botón a la derecha */
+    font-size: 28px;                          /* Tamaño de fuente grande para el botón de cerrar */
+    font-weight: bold;                         /* Negrita para el botón de cerrar */
 }
 
+/* Efecto hover y foco para el botón de cerrar */
 .close:hover, .close:focus {
-    color: black; /* Cambiar color al pasar el cursor o enfocar */
-    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+    color: black;                              /* Cambiar color a negro al pasar el mouse o enfocar */
+    cursor: pointer;                           /* Cambiar cursor a puntero al pasar el mouse */
 }
 
+/* Estilos para los formularios */
 form {
-    display: grid; /* Usar grid para el formulario */
-    gap: 15px; /* Espacio entre los elementos del formulario */
+    display: grid;                            /* Usar grid para organizar los campos del formulario */
+    gap: 15px;                                /* Espaciado entre los campos del formulario */
 }
 
+/* Fila de formulario */
 .form-row {
-    display: flex; /* Usar flex para organizar elementos en fila */
-    gap: 15px; /* Espacio entre los elementos de la fila */
+    display: flex;                            /* Usar flexbox para organizar los elementos en fila */
+    gap: 15px;                                /* Espacio entre los elementos de la fila */
 }
 
+/* Agrupación de formulario */
 .form-group {
-    flex: 1; /* Hacer que cada campo ocupe el mismo espacio */
+    flex: 1;                                  /* Hacer que los grupos de formulario ocupen espacio igual */
 }
 
+/* Estilos para las etiquetas */
 label {
-    display: block; /* Mostrar etiqueta como bloque */
-    margin-bottom: 5px; /* Espacio debajo de la etiqueta */
-    color: #666; /* Color del texto de la etiqueta */
+    display: block;                           /* Hacer que las etiquetas ocupen todo el ancho */
+    margin-bottom: 5px;                      /* Margen inferior para separar la etiqueta del campo */
+    color: #666;                              /* Color gris para el texto de la etiqueta */
 }
 
+/* Estilos para entradas y selectores */
 input, select {
-    width: 100%; /* Campos ocupan todo el ancho del contenedor */
-    padding: 8px; /* Espaciado interno */
-    border: 1px solid #ddd; /* Borde gris claro */
-    border-radius: 4px; /* Bordes redondeados */
-    box-sizing: border-box; /* Incluir el padding en el ancho total */
+    width: 100%;                              /* Ancho completo para entradas y selectores */
+    padding: 8px;                            /* Espaciado interno en entradas y selectores */
+    border: 1px solid var(--color-border);   /* Bordes delgados y color definido por variable */
+    border-radius: 4px;                      /* Bordes redondeados en entradas y selectores */
+    box-sizing: border-box;                   /* Incluir el padding y el borde en el tamaño total */
 }
 
+
+/* Estilos para listas */
 ul {
-    display: grid; /* Usar grid para organizar los elementos de la lista */
-    grid-template-columns: auto auto auto; /* Tres columnas automáticas */
-    grid-template-rows: 50px; /* Altura de las filas */
+    display: grid;                             /* Usar grid para organizar elementos de la lista */
+    grid-template-columns: auto auto auto;    /* Crear tres columnas en la lista */
+    grid-template-rows: 50px;                 /* Fijar altura de las filas de la lista */
 }
 
+/* Estilos para los elementos de la lista */
 li {
-    display: grid; /* Usar grid para centrar elementos */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    display: grid;                             /* Usar grid para centrar contenido dentro de cada elemento */
+    justify-content: center;                   /* Centrar horizontalmente el contenido */
+    align-items: center;                       /* Centrar verticalmente el contenido */
 }
 
-/* Profile styles */
+/* Estilos para el perfil */
 .profile {
-    padding: 20px; /* Espaciado interno */
-    text-align: center; /* Centrar texto */
+    padding: 20px;                             /* Espaciado interno en el contenedor del perfil */
+    text-align: center;                        /* Centrar texto en el contenedor del perfil */
 }
 
+/* Imagen del perfil */
 .profile-img {
-    width: 150px; /* Ancho de la imagen del perfil */
-    height: 150px; /* Altura de la imagen del perfil */
-    border-radius: 50%; /* Hacer la imagen redonda */
-    margin-bottom: 20px; /* Espacio debajo de la imagen */
+    width: 150px;                             /* Ancho de la imagen del perfil */
+    height: 150px;                            /* Alto de la imagen del perfil */
+    border-radius: 50%;                       /* Hacer la imagen circular */
+    margin-bottom: 20px;                      /* Margen inferior para separar de otros elementos */
 }
 
+/* Estilos para párrafos */
 p {
-    margin: 10px 0; /* Espacio arriba y abajo del párrafo */
+    margin: 10px 0;                           /* Margen superior e inferior para los párrafos */
 }
 
+/* Estilos para texto fuerte */
 strong {
-    color: var(--color-text); /* Color del texto en negrita */
+    color: var(--color-text);                  /* Color del texto en negrita, usando la variable de color */
 }
 
-/* Alert Message styles */
+/* Estilos para mensajes de alerta */
 .alert {
-    padding: 10px; /* Espaciado interno para la alerta */
+    padding: 10px;                            /* Espaciado interno en el mensaje de alerta */
+    background-color: #FFEEEE;                /* Fondo claro para el mensaje de alerta */
+    color: #D8000C;                           /* Color de texto rojo para el mensaje de alerta */
 }
 
+/* Estilos para el pie de página */
 footer {
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    position: absolute;
+    width: 100%;                              /* Ancho completo para el pie de página */
+    bottom: 0;                                /* Posicionar en la parte inferior de la página */
+    display: flex;                            /* Usar flexbox para centrar contenido en el pie de página */
+    justify-content: center;                  /* Centrar horizontalmente el contenido del pie de página */
+    position: absolute;                       /* Posicionar de manera absoluta */
+    padding: 10px;                           /* Espaciado interno en el pie de página */
+    background-color: var(--color-primary);  /* Fondo del pie de página usando la variable de color */
+    color: white;                             /* Color del texto del pie de página */
 }

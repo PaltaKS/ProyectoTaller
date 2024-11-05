@@ -31,14 +31,14 @@ def crear_contacto(request):
                 'error': "El trabajador seleccionado no existe."  # Mensaje de error
             }) 
 
-    return render(request, 'contactos_emergencia/formulario.html', {'trabajadores': trabajadores})  # Renderizar el formulario
+    return render(request, 'ContactoEmergencia/formulario.html', {'trabajadores': trabajadores})  # Renderizar el formulario
 
 
 
 # Listar Contactos de Emergencia
 def listar_contactos(request):
     contactos = ContactoEmergencia.objects.all()
-    return render(request, 'contactos_emergencia/lista.html', {'contactos': contactos})
+    return render(request, 'ContactoEmergencia/lista.html', {'contactos': contactos})
 
 # Editar Contacto de Emergencia
 def editar_contacto(request, id_contacto):
@@ -55,7 +55,7 @@ def editar_contacto(request, id_contacto):
 
     else:
         trabajadores = Trabajador.objects.all()
-        return render(request, 'contactos_emergencia/formulario.html', {'contacto': contacto, 'trabajadores': trabajadores})
+        return render(request, 'ContactoEmergencia/formulario.html', {'contacto': contacto, 'trabajadores': trabajadores})
 
 # Eliminar Contacto de Emergencia
 def eliminar_contacto(request, id_contacto):
@@ -65,4 +65,4 @@ def eliminar_contacto(request, id_contacto):
         contacto.delete()
         return redirect('listar_contactos')
 
-    return render(request, 'contactos_emergencia/eliminar.html', {'contacto': contacto})
+    return render(request, 'ContactoEmergencia/eliminar.html', {'contacto': contacto})

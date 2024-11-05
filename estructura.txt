@@ -1,0 +1,115 @@
+PROYECTOTALLER/
+│
+├── AppProyecto/
+│   ├── migrations/                          # Archivos de migración de la base de datos
+│   │   └── __init__.py
+│   ├── models/                              # Modelos de la aplicación
+│   │   ├── __init__.py
+│   │   ├── trabajador.py                    # Modelo Trabajador
+│   │   ├── rol.py                           # Modelo Rol
+│   │   ├── privilegio.py                    # Modelo Privilegio
+│   │   ├── rol_privilegio.py                # Modelo RolPrivilegio
+│   │   ├── usuario.py                        # Modelo Usuario
+│   │   ├── contacto_emergencia.py           # Modelo ContactoEmergencia
+│   │   ├── carga_familiar.py                 # Modelo CargaFamiliar
+│   │   └── datos_laborales.py               # Modelo DatosLaborales
+│   │
+│   ├── repositories/                         # Capa de acceso a datos
+│   │   ├── __init__.py
+│   │   ├── user_repositories.py              # Funciones para acceso a usuarios
+│   │   ├── trabajador_repositories.py        # Funciones para acceso a trabajadores
+│   │   ├── contacto_emergencia_repositories.py # Funciones para acceso a contactos de emergencia
+│   │   ├── carga_familiar_repositories.py    # Funciones para acceso a cargas familiares
+│   │   └── datos_laborales_repositories.py   # Funciones para acceso a datos laborales
+│   │
+│   ├── services/                            # Capa de lógica de negocio
+│   │   ├── __init__.py
+│   │   ├── user_services.py                  # Lógica de negocio para usuarios
+│   │   ├── trabajador_services.py            # Lógica de negocio para trabajadores
+│   │   ├── contacto_emergencia_services.py   # Lógica de negocio para contactos de emergencia
+│   │   ├── carga_familiar_services.py        # Lógica de negocio para cargas familiares
+│   │   └── datos_laborales_services.py       # Lógica de negocio para datos laborales
+│   │
+│   ├── views/                                # Vistas de la aplicación
+│   │   ├── __init__.py
+│   │   ├── login_views.py                    # Vistas para autenticación
+│   │   │   ├── login()                       # Vista para mostrar el formulario de login
+│   │   │   ├── logout()                      # Vista para cerrar sesión
+│   │   │   └── redirect_after_login()        # Vista para redirigir después de login
+│   │   │
+│   │   ├── trabajador_views.py               # Vistas para Trabajador
+│   │   │   ├── lista_trabajadores()          # Vista para listar trabajadores
+│   │   │   ├── crear_trabajador()            # Vista para crear un nuevo trabajador
+│   │   │   ├── actualizar_trabajador()       # Vista para actualizar un trabajador existente
+│   │   │   ├── eliminar_trabajador()         # Vista para eliminar un trabajador
+│   │   │   └── ... (otras vistas según necesidad)
+│   │   │
+│   │   ├── usuario_views.py                   # Vistas para Usuario
+│   │   │   ├── lista_usuarios()               # Vista para listar usuarios
+│   │   │   ├── crear_usuario()                # Vista para crear un nuevo usuario
+│   │   │   ├── actualizar_usuario()           # Vista para actualizar un usuario existente
+│   │   │   ├── eliminar_usuario()             # Vista para eliminar un usuario
+│   │   │   └── ... (otras vistas según necesidad)
+│   │   │
+│   │   ├── contacto_emergencia_views.py       # Vistas para Contacto de Emergencia
+│   │   │   ├── lista_contactos_emergencia()   # Vista para listar contactos de emergencia
+│   │   │   ├── crear_contacto_emergencia()    # Vista para crear un nuevo contacto de emergencia
+│   │   │   ├── actualizar_contacto_emergencia() # Vista para actualizar un contacto existente
+│   │   │   ├── eliminar_contacto_emergencia() # Vista para eliminar un contacto
+│   │   │   └── ... (otras vistas según necesidad)
+│   │   │
+│   │   ├── carga_familiar_views.py            # Vistas para Carga Familiar
+│   │   │   ├── lista_cargas_familiares()      # Vista para listar cargas familiares
+│   │   │   ├── crear_carga_familiar()         # Vista para crear una nueva carga familiar
+│   │   │   ├── actualizar_carga_familiar()    # Vista para actualizar una carga existente
+│   │   │   ├── eliminar_carga_familiar()      # Vista para eliminar una carga
+│   │   │   └── ... (otras vistas según necesidad)
+│   │   │
+│   │   ├── datos_laborales_views.py           # Vistas para Datos Laborales
+│   │   │   ├── lista_datos_laborales()        # Vista para listar datos laborales
+│   │   │   ├── crear_datos_laborales()        # Vista para crear nuevos datos laborales
+│   │   │   ├── actualizar_datos_laborales()   # Vista para actualizar datos laborales existentes
+│   │   │   ├── eliminar_datos_laborales()     # Vista para eliminar datos laborales
+│   │   │   └── ... (otras vistas según necesidad)
+│   │   │
+│   │   └── ... (otras vistas según necesidad)
+│   │
+│   ├── templates/                            # Plantillas HTML organizadas por entidad
+│   │   ├── login/
+│   │   │   ├── login.html                    # Formulario de inicio de sesión
+│   │   ├── trabajadores/
+│   │   │   ├── lista.html                   # Lista de Trabajadores
+│   │   │   ├── formulario.html              # Formulario para crear/actualizar Trabajador
+│   │   │   ├── eliminar.html                 # Confirmación de eliminación de Trabajador
+│   │   │   └── ... (otras plantillas)
+│   │   ├── usuarios/
+│   │   │   ├── lista.html                   # Lista de Usuarios
+│   │   │   ├── formulario.html              # Formulario para crear/actualizar Usuario
+│   │   │   ├── eliminar.html                 # Confirmación de eliminación de Usuario
+│   │   │   └── ... (otras plantillas)
+│   │   ├── contactos_emergencia/
+│   │   │   ├── lista.html                   # Lista de Contactos de Emergencia
+│   │   │   ├── formulario.html              # Formulario para crear/actualizar Contacto de Emergencia
+│   │   │   ├── eliminar.html                 # Confirmación de eliminación de Contacto
+│   │   │   └── ... (otras plantillas)
+│   │   ├── cargas_familiares/
+│   │   │   ├── lista.html                   # Lista de Cargas Familiares
+│   │   │   ├── formulario.html              # Formulario para crear/actualizar Carga Familiar
+│   │   │   ├── eliminar.html                 # Confirmación de eliminación de Carga Familiar
+│   │   │   └── ... (otras plantillas)
+│   │   ├── datos_laborales/
+│   │   │   ├── lista.html                   # Lista de Datos Laborales
+│   │   │   ├── formulario.html              # Formulario para crear/actualizar Datos Laborales
+│   │   │   ├── eliminar.html                 # Confirmación de eliminación de Datos Laborales
+│   │   │   └── ... (otras plantillas)
+│   │   └── ... (otras plantillas según necesidad)
+│   │
+│   ├── urls.py                              # Enrutamiento de la aplicación
+│   └── __init__.py                          # Inicializador de la aplicación
+│
+├── mi_proyecto/
+│   ├── __init__.py
+│   ├── settings.py                          # Configuraciones de Django
+│   ├── urls.py                              # Enrutamiento del proyecto
+│   └── wsgi.py                              # Punto de entrada para WSGI
+│...

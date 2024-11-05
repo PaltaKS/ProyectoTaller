@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cargas Familiares</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Cargas Familiares</h1>
+        <a href="{% url 'crear_carga_familiar' %}"><button>Agregar Nueva Carga Familiar</button></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Parentesco</th>
+                    <th>Género</th>
+                    <th>RUT</th>
+                    <th>Trabajador</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for carga in cargas_familiares %}
+                    <tr>
+                        <td>{{ carga.id_carga_familiar }}</td>
+                        <td>{{ carga.nombre }}</td>
+                        <td>{{ carga.parentesco }}</td>
+                        <td>{{ carga.genero }}</td>
+                        <td>{{ carga.rut }}</td>
+                        <td>{{ carga.trabajador.nombre }}</td>
+                        <td>
+                            <a href="{% url 'editar_carga_familiar' carga.id_carga_familiar %}">Editar</a>
+                            <a href="{% url 'eliminar_carga_familiar' carga.id_carga_familiar %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="7">No hay cargas familiares registradas.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'home' %}"><button>Regresar al Home</button></a>
+    </div>
+</body>
+</html>

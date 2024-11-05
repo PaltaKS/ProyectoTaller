@@ -3,6 +3,7 @@ from AppProyecto.views.trabajador_views import listar_trabajadores, crear_trabaj
 from AppProyecto.views.genero_views import listar_generos, crear_genero, actualizar_genero, eliminar_genero # Genero
 from AppProyecto.views.usuario_view import listar_usuarios, crear_usuario, actualizar_usuario, eliminar_usuario  # Usuarios
 from AppProyecto.views.contacto_emergencia_views import listar_contactos, crear_contacto, editar_contacto, eliminar_contacto  #Contactos de Emergencia
+from AppProyecto.views.carga_familiar_views import listar_cargas_familiares, crear_carga_familiar, editar_carga_familiar, eliminar_carga_familiar # Carga Familiar
 from AppProyecto.views import trabajador_views
 from AppProyecto.views.home_views import home_view
 from AppProyecto.views.login_views import login_view
@@ -34,6 +35,11 @@ urlpatterns = [
     path('contactos/', listar_contactos, name='listar_contactos'),
     path('contactos/editar/<int:id_contacto>/', editar_contacto, name='editar_contacto'),
     path('contactos/eliminar/<int:id_contacto>/', eliminar_contacto, name='eliminar_contacto'),
+
+    path('cargas_familiares/', listar_cargas_familiares, name='listar_cargas_familiares'),
+    path('cargas_familiares/nuevo/', crear_carga_familiar, name='crear_carga_familiar'),
+    path('cargas_familiares/editar/<int:carga_id>/', editar_carga_familiar, name='editar_carga_familiar'),
+    path('cargas_familiares/eliminar/<int:carga_id>/', eliminar_carga_familiar, name='eliminar_carga_familiar'),
 
 
 ]

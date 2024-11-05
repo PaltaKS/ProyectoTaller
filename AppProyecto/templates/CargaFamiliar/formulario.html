@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if carga_familiar %}Editar{% else %}Crear{% endif %} Carga Familiar</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{% if carga_familiar %}Editar{% else %}Crear{% endif %} Carga Familiar</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{ carga_familiar.nombre|default_if_none:'' }}" required><br>
+
+            <label for="parentesco">Parentesco:</label>
+            <input type="text" id="parentesco" name="parentesco" value="{{ carga_familiar.parentesco|default_if_none:'' }}"><br>
+
+            <label for="genero">Género:</label>
+            <input type="text" id="genero" name="genero" value="{{ carga_familiar.genero|default_if_none:'' }}"><br>
+
+            <label for="rut">RUT:</label>
+            <input type="text" id="rut" name="rut" value="{{ carga_familiar.rut|default_if_none:'' }}"><br>
+
+            <label for="trabajador">Trabajador:</label>
+            <select id="trabajador" name="trabajador" required>
+                {% for trabajador in trabajadores %}
+                    <option value="{{ trabajador.rut }}" {% if carga_familiar.trabajador and trabajador.rut == carga_familiar.trabajador.rut %}selected{% endif %}>
+                        {{ trabajador.nombre }}
+                    </option>
+                {% endfor %}
+            </select><br>
+
+            <button type="submit">{% if carga_familiar %}Actualizar{% else %}Crear{% endif %}</button>
+        </form>
+        <a href="{% url 'listar_cargas_familiares' %}"><button>Volver a la lista</button></a>
+    </div>
+</body>
+</html>

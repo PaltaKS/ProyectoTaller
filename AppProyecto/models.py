@@ -117,11 +117,11 @@ class ContactoEmergencia(models.Model):
 
 
 class CargaFamiliar(models.Model):
-    id_carga_familiar = models.AutoField(primary_key=True)  # ID de Carga Familiar
-    trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)
+    id_carga_familiar = models.AutoField(primary_key=True)
+    trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)  
     nombre = models.CharField(max_length=100)
     parentesco = models.CharField(max_length=50, blank=True, null=True)
-    genero = models.CharField(max_length=20, blank=True, null=True)
+    genero = models.ForeignKey(Genero, on_delete=models.SET_NULL, null=True)  
     rut = models.CharField(max_length=20, unique=True)
 
     class Meta:

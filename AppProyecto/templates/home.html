@@ -12,13 +12,13 @@
     <div class="container">
         <h1>Bienvenido, {{ usuario.nombre_usuario }}</h1>
         <h2>Dashboard</h2>
-        <p>Selecciona una opción:</p>
         
         <div class="actions">
             {% if usuario.rol.nombre == 'ADMIN' %}
                 <a href="{% url 'lista_usuarios' %}"><button>Gestionar Usuarios</button></a>
                 <a href="{% url 'listar_trabajadores' %}"><button>Gestionar Trabajadores</button></a>
                 <a href="{% url 'listar_contactos' %}"><button>Gestionar Contactos de Emergencia</button></a>
+                <a href="{% url 'listar_cargas_familiares' %}"><button>Gestionar Carga Familiar</button></a>
             {% elif usuario.rol.nombre == 'RRHH' %}
                 <a href="{% url 'listar_trabajadores' %}"><Button>Gestionar Trabajadores</Button></a>
             {% elif usuario.rol.nombre == 'EMPLEADO' %}
