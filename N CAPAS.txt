@@ -1,0 +1,42 @@
+mi_proyecto/
+│
+├── AppProyecto/
+│   ├── migrations/                         
+│   ├── models/                             # Capa de acceso a datos
+│   │   ├── trabajador_model.py             # Modelo Trabajador
+│   │   ├── usuario_model.py                # Modelo Usuario
+│   │   └── __init__.py
+│   ├── repositories/                       # Capa de repositorios
+│   │   ├── trabajador_repository.py        # Repositorio para acceso y manipulación de datos de Trabajador
+│   │   ├── usuario_repository.py           # Repositorio para acceso y manipulación de datos de Usuario
+│   │   └── __init__.py
+│   ├── services/                           # Capa de lógica de negocio o servicios
+│   │   ├── trabajador_service.py           # Lógica de negocio para Trabajador
+│   │   ├── usuario_service.py              # Lógica de negocio para Usuario
+│   │   └── __init__.py
+│   ├── views/                              # Capa de presentación
+│   │   ├── trabajador_views.py             # Vistas para Trabajador
+│   │   ├── usuario_views.py                # Vistas para Usuario
+│   │   └── __init__.py
+│   ├── templates/                          # Plantillas HTML (capa de presentación visual)
+│   │   ├── trabajadores/
+│   │   │   ├── lista.html
+│   │   │   ├── detalle.html
+│   │   │   └── formulario.html
+│   │   └── usuarios/
+│   │       ├── lista.html
+│   │       ├── detalle.html
+│   │       └── formulario.html
+│   ├── static/                             # Archivos estáticos (CSS, JS, imágenes)
+│   ├── urls.py                             # Rutas de la aplicación
+│   ├── forms.py                            # Formularios de Django
+│   └── admin.py                            # Configuración del panel de administración
+│
+├── mi_proyecto/                            # Configuración del proyecto Django
+│   ├── __init__.py
+│   ├── settings.py                         # Configuración global del proyecto
+│   ├── urls.py                             # Rutas principales del proyecto
+│   ├── wsgi.py                             # Configuración para WSGI (despliegue)
+│   └── asgi.py                             # Configuración para ASGI (para soporte de WebSockets)
+│
+└── manage.py                               # Script principal para gestionar el proyecto Django

@@ -1,0 +1,24 @@
+mi_proyecto/
+│
+├── AppProyecto/                                 # Aplicación principal
+│   ├── migrations/                         # Archivos de migración de la base de datos
+│   ├── models.py                           # Modelos (equivalente a "Model" en MVC)
+│   ├── views.py                            # Vistas (equivalente a "Controller" en MVC)
+│   ├── templates/                          # Plantillas HTML (equivalente a "View" en MVC)
+│   │   ├── mi_app/                         # Carpeta de plantillas para la aplicación específica
+│   │   │   ├── home.html                   # Página principal o de inicio
+│   │   │   ├── detalle.html                # Vista de detalle para una entidad
+│   │   │   └── formulario.html             # Formulario para crear/actualizar una entidad
+│   ├── static/                             # Archivos estáticos (CSS, JS, imágenes)
+│   ├── urls.py                             # Rutas de la aplicación (enlace entre URLs y vistas)
+│   ├── forms.py                            # Formularios de Django para la entrada de datos
+│   └── admin.py                            # Configuración del panel de administración para la aplicación
+│
+├── mi_proyecto/                            # Configuración del proyecto Django
+│   ├── __init__.py
+│   ├── settings.py                         # Configuración global del proyecto
+│   ├── urls.py                             # Rutas principales del proyecto
+│   ├── wsgi.py                             # Configuración para WSGI (despliegue)
+│   └── asgi.py                             # Configuración para ASGI (para soporte de WebSockets)
+│
+└── manage.py                               # Script principal para gestionar el proyecto Django

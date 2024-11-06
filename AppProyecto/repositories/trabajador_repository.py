@@ -13,10 +13,17 @@ class TrabajadorRepository:
         return Trabajador.objects.filter(rut=rut).first()
 
     @staticmethod
-    def crear_trabajador(data):
-        trabajador = Trabajador(**data)
-        trabajador.save()
-        return trabajador
+    def crear_trabajador(rut, nombre, genero_id, direccion, telefono):
+        # Crear y guardar el trabajador
+        nuevo_trabajador = Trabajador(
+            rut=rut,
+            nombre=nombre,
+            genero_id=genero_id,  # Asignar el género
+            direccion=direccion,
+            telefono=telefono
+        )
+        nuevo_trabajador.save()
+        return nuevo_trabajador
 
     @staticmethod
     def actualizar_trabajador(rut, data):

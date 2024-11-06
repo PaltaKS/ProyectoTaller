@@ -8,6 +8,7 @@ def listar_trabajadores(request):
     return render(request, 'trabajadores/lista.html', {'trabajadores': trabajadores})
 
 def crear_trabajador(request):
+    generos = Genero.objects.all()  # Obtener todos los géneros
     if request.method == 'POST':
         # Obtener datos del formulario
         rut = request.POST.get('rut')
@@ -15,19 +16,9 @@ def crear_trabajador(request):
         genero_id = request.POST.get('genero')  # ID del género
         direccion = request.POST.get('direccion')
         telefono = request.POST.get('telefono')
+        TrabajadorService.crear_trabajador(rut, nombre, genero_id, direccion, telefono)
+        return redirect('listar_trabajadores')  # Redirigir a la lista de trabajadores
 
-        # Crear y guardar el trabajador
-        nuevo_trabajador = Trabajador(
-            rut=rut,
-            nombre=nombre,
-            genero_id=genero_id,  # Asignar el género
-            direccion=direccion,
-            telefono=telefono
-        )
-        nuevo_trabajador.save()  # Guardar el trabajador
-        return redirect('lista_trabajadores')  # Redirigir a la lista de trabajadores
-
-    generos = Genero.objects.all()  # Obtener todos los géneros
     return render(request, 'trabajadores/formulario.html', {'generos': generos})
 
 def actualizar_trabajador(request, rut):

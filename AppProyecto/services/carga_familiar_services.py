@@ -14,6 +14,7 @@ class CargaFamiliarService:
     @staticmethod
     def crear_carga(trabajador_id, nombre, parentesco, genero, rut):
         trabajador = Trabajador.objects.get(rut=trabajador_id)
+        
         return CargaFamiliarRepository.crear(trabajador, nombre, parentesco, genero, rut)
 
     @staticmethod

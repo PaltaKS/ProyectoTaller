@@ -15,8 +15,8 @@
         
         <div class="actions">
             {% if usuario.rol.nombre == 'ADMIN' %}
-                <a href="{% url 'lista_usuarios' %}"><button>Gestionar Usuarios</button></a>
                 <a href="{% url 'listar_trabajadores' %}"><button>Gestionar Trabajadores</button></a>
+                <a href="{% url 'lista_usuarios' %}"><button>Gestionar Usuarios</button></a>
                 <a href="{% url 'listar_contactos' %}"><button>Gestionar Contactos de Emergencia</button></a>
                 <a href="{% url 'listar_cargas_familiares' %}"><button>Gestionar Carga Familiar</button></a>
             {% elif usuario.rol.nombre == 'RRHH' %}

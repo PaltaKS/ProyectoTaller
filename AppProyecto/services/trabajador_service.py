@@ -11,8 +11,8 @@ class TrabajadorService:
         return TrabajadorRepository.obtener_por_rut(rut)
 
     @staticmethod
-    def crear_trabajador(data):
-        return TrabajadorRepository.crear_trabajador(data)
+    def crear_trabajador(rut, nombre, genero_id, direccion, telefono):
+        return TrabajadorRepository.crear_trabajador(rut, nombre, genero_id, direccion, telefono)
 
     @staticmethod
     def actualizar_trabajador(rut, data):
