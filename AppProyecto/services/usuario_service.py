@@ -1,25 +1,28 @@
 from AppProyecto.repositories.usuario_repository import UsuarioRepository
-from django.contrib.auth.hashers import make_password
-from AppProyecto.models import Usuario
+
 
 class UsuarioService:
 
     @staticmethod
-    def crear_usuario(datos):
-        datos['contrasena'] = make_password(datos['contrasena'])
-        usuario = Usuario(**datos)
-        UsuarioRepository.guardar(usuario)
-        return usuario
+    def listar_usuario():
+        return UsuarioRepository.obtener_todos()
+
 
     @staticmethod
-    def actualizar_usuario(usuario, datos):
-        if 'contrasena' in datos and datos['contrasena']:
-            datos['contrasena'] = make_password(datos['contrasena'])
-        for campo, valor in datos.items():
-            setattr(usuario, campo, valor)
-        UsuarioRepository.guardar(usuario)
+    def obtener_usuario(id_usuario):
+        return UsuarioRepository.obtener_por_id(id_usuario)
+
 
     @staticmethod
-    def eliminar_usuario(usuario):
-        UsuarioRepository.eliminar(usuario)
+    def crear_usuario(nombre_usuario, trabajador_id, rol_id, contrasena):
+        return UsuarioRepository.crear_usuario(nombre_usuario, trabajador_id, rol_id, contrasena)
 
+
+    @staticmethod
+    def actualizar_usuario(usuario_id, nombre_usuario, trabajador_id, rol_id, contrasena=None):
+        return UsuarioRepository.actualizar_usuario(usuario_id, nombre_usuario, trabajador_id, rol_id, contrasena)
+
+
+    @staticmethod
+    def eliminar_usuario(usuario_id):
+        return UsuarioRepository.eliminar_usuario(usuario_id)

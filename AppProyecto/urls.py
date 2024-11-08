@@ -16,7 +16,7 @@ urlpatterns = [
     path('home/', home_view, name='home'),  # La página de inicio después del login
     path('logout/', logout_view, name='logout'),  # URL para cerrar sesión
 
-    path('trabajadores/', trabajador_views.listar_trabajadores, name='listar_trabajadores'),
+    path('trabajadores/', listar_trabajadores, name='listar_trabajadores'),
     path('trabajadores/crear/', crear_trabajador, name='crear_trabajador'),
     path('trabajadores/actualizar/<str:rut>/', actualizar_trabajador, name='actualizar_trabajador'),
     path('trabajadores/eliminar/<str:rut>/', eliminar_trabajador, name='eliminar_trabajador'),
