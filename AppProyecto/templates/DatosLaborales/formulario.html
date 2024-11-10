@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{% if datos_laborales %}Editar{% else %}Crear{% endif %} Datos Laborales</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label for="trabajador">Trabajador:</label>
+                <select name="trabajador" required>
+                    {% for trabajador in trabajadores %}
+                        <option value="{{ trabajador.rut }}" 
+                                {% if datos_laborales and datos_laborales.trabajador == trabajador %}selected{% endif %}>
+                            {{ trabajador.nombre }}
+                        </option>
+                    {% endfor %}
+                </select><br>
+
+                <label for="cargo">Cargo:</label>
+                <input type="text" name="cargo" required><br>
+
+                <label for="fecha_ingreso">Fecha de Ingreso:</label>
+                <input type="date" name="fecha_ingreso"><br>
+
+                <label for="area">Área:</label>
+                <input type="text" name="area"><br>
+
+                <label for="departamento">Departamento:</label>
+                <input type="text" name="departamento"><br>
+
+                <button type="submit">Guardar</button>
+            </form>
+        <a href="{% url 'lista_datos_laborales' %}">Volver a la Lista</a>
+    </div>
+</body>
+</html>
