@@ -1,14 +1,17 @@
+# AppProyecto/views/usuario_views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from AppProyecto.models import Usuario, Rol, Trabajador
 from AppProyecto.services.usuario_service import UsuarioService
 
+# Listar Usuarios
 def listar_usuarios(request):
-    usuarios = Usuario.objects.all()
+    usuarios = UsuarioService.listar_usuarios()
     return render(request, 'usuarios/lista.html', {'usuarios': usuarios})
 
+# Crear Usuario
 def crear_usuario(request):
-    trabajadores = Trabajador.objects.all()  # Obtener todos los trabajadores
-    roles = Rol.objects.all()  # Obtener todos los roles
+    trabajadores = Trabajador.objects.all()
+    roles = Rol.objects.all()
     if request.method == 'POST':
         nombre_usuario = request.POST.get('nombre_usuario')
         trabajador_id = request.POST.get('trabajador')  # Asignar el trabajador
@@ -16,8 +19,9 @@ def crear_usuario(request):
         contrasena = request.POST.get('contrasena')
         UsuarioService.crear_usuario(nombre_usuario, trabajador_id, rol_id, contrasena)
         return redirect('lista_usuarios')
-    return render(request, 'usuarios/formulario.html', {'roles': roles, 'trabajadores': trabajadores})
+    return render(request, 'usuarios/formulario.html', {'trabajadores': trabajadores, 'roles': roles})
 
+# Actualizar Usuario
 def actualizar_usuario(request, id_usuario):
     usuario = get_object_or_404(Usuario, pk=id_usuario)
     trabajadores = Trabajador.objects.all()  # Obtener todos los trabajadores
@@ -31,8 +35,9 @@ def actualizar_usuario(request, id_usuario):
         UsuarioService.actualizar_usuario(id_usuario, nombre_usuario, trabajador_id, rol_id, contrasena)
         
         return redirect('lista_usuarios')
-    return render(request, 'usuarios/formulario.html', {'usuario': usuario, 'roles': roles, 'trabajadores': trabajadores})
+    return render(request, 'usuarios/formulario.html', {'usuario': usuario, 'trabajadores': trabajadores, 'roles': roles})
 
+# Eliminar Usuario
 def eliminar_usuario(request, id_usuario):
     usuario = get_object_or_404(Usuario, pk=id_usuario)  # Obtener el usuario o mostrar un 404 si no existe
 

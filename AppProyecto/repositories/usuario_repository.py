@@ -4,12 +4,12 @@ from django.contrib.auth.hashers import make_password
 class UsuarioRepository:
 
     @staticmethod
-    def obtener_todos():
+    def listar():
         return Usuario.objects.all()
 
     @staticmethod
     def obtener_por_id(id_usuario):
-        return Usuario.objects.get(id_usuario=id_usuario)
+        return get_object_or_404(Usuario, id_usuario=id_usuario)
 
 
     @staticmethod
