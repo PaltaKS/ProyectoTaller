@@ -4,8 +4,8 @@ from AppProyecto.repositories.usuario_repository import UsuarioRepository
 class UsuarioService:
 
     @staticmethod
-    def listar_usuario():
-        return UsuarioRepository.obtener_todos()
+    def listar_usuarios():
+        return UsuarioRepository.listar()
 
 
     @staticmethod

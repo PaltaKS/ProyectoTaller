@@ -1,5 +1,6 @@
 from AppProyecto.models import Usuario, Trabajador, Rol
 from django.contrib.auth.hashers import make_password
+from django.shortcuts import get_object_or_404
 
 class UsuarioRepository:
 

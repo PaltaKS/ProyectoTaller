@@ -5,6 +5,7 @@
     <title>{% if carga_familiar %}Editar{% else %}Crear{% endif %} Carga Familiar</title>
     {% load static %} 
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/rut_format.js' %}"></script>
 </head>
 <body>
     <div class="container">
@@ -25,7 +26,7 @@
             </select><br>
 
             <label for="rut">RUT:</label>
-            <input type="text" id="rut" name="rut" value="{{ carga_familiar.rut|default_if_none:'' }}"><br>
+            <input type="text" name="rut" id="rut" oninput="formatearRut(this)" maxlength="12" value="{{ trabajador.rut }}" {% if trabajador %}readonly{% endif %} required placeholder="12.345.678-9"><br>
 
             <label for="trabajador">Trabajador:</label>
             <select id="trabajador" name="trabajador" required>

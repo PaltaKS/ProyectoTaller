@@ -12,12 +12,12 @@ class CargaFamiliarRepository:
         return get_object_or_404(CargaFamiliar, id_carga_familiar=carga_id)
 
     @staticmethod
-    def crear(trabajador, nombre, parentesco, genero, rut):
+    def crear(trabajador_id, nombre, parentesco, genero_id, rut):
         nueva_carga = CargaFamiliar(
-            trabajador=trabajador,
+            trabajador=trabajador_id,
             nombre=nombre,
             parentesco=parentesco,
-            genero=genero,
+            genero_id=genero_id,
             rut=rut
         )
         nueva_carga.save()

@@ -241,3 +241,60 @@ footer {
     background-color: var(--color-primary);  /* Fondo del pie de página usando la variable de color */
     color: white;                             /* Color del texto del pie de página */
 }
+
+
+
+
+
+/* Estilos para el contenedor de carga */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none; /* Oculto inicialmente */
+}
+
+/* Estilo del círculo giratorio */
+.spinner-circle {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(8, 33, 148, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+.error-message {
+    display: flex;
+    align-items: center;
+    color: #D8000C; /* Color del texto rojo */
+    background-color: #FFBABA; /* Fondo rojo claro */
+    border: 1px solid #D8000C;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Icono de advertencia en la viñeta */
+.error-message::before {
+    content: "⚠️"; /* Ícono de advertencia */
+    margin-right: 10px;
+}

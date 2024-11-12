@@ -5,21 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     {% load static %} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> <!-- Ajusta la ruta según tu proyecto -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
         <h1>Iniciar Sesión</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Entrar</button>
+            <label for="nombre_usuario">Nombre de Usuario:</label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario">
+            
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena">
+            
+            <button type="submit">Iniciar Sesión</button>
         </form>
-        {% if form.non_field_errors %}
-            <div class="error">{{ form.non_field_errors }}</div>
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
         {% endif %}
     </div>
+    
+    <!-- Overlay de carga con círculo giratorio -->
+    <div class="loading-overlay">
+        <div class="spinner-circle"></div>
+    </div>
+
+    <!-- Incluye el archivo JavaScript -->
+    <script src="{% static 'js/login.js' %}"></script>
+
 </body>
 </html>
-
-
