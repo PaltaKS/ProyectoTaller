@@ -11,41 +11,57 @@
     <div class="container">
         <h1>Lista de Trabajadores</h1>
         <a href="{% url 'crear_trabajador' %}"><button>Crear nuevo trabajador</button></a>
-            <table>
-                <thead>
-                    <tr>
-                        <th>RUT</th>
-                        <th>Nombre</th>
-                        <th>Género</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for trabajador in trabajadores %}
-                    <tr>
-                        <td>{{ trabajador.rut }}</td>
-                        <td>{{ trabajador.nombre }}</td>
-                        <td>
-                            {% if trabajador.genero %}
-                                {{ trabajador.genero.nombre }}
-                            {% else %}
-                                Sin género
-                            {% endif %}
-                        </td>
-                        <td>{{ trabajador.direccion }}</td>
-                        <td>{{ trabajador.telefono }}</td>
-                        <td>
-                            <a href="{% url 'actualizar_trabajador' trabajador.rut %}"><button class="miniButton">Editar</button></a>
-                            <a href="{% url 'eliminar_trabajador' trabajador.rut %}"><button class="miniButton">Eliminar</button></a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <a href="{% url 'home' %}"><button>Regresar al Home</button></a>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Género</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trabajador in trabajadores %}
+                <tr>
+                    <td>{{ trabajador.rut }}</td>
+                    <td>{{ trabajador.nombre }}</td>
+                    <td>
+                        {% if trabajador.genero %}
+                            {{ trabajador.genero.nombre }}
+                        {% else %}
+                            Sin género
+                        {% endif %}
+                    </td>
+                    <td>{{ trabajador.direccion }}</td>
+                    <td>{{ trabajador.telefono }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_trabajador' trabajador.rut %}"><button class="miniButton">Editar</button></a>
+                        <a href="{% url 'eliminar_trabajador' trabajador.rut %}"><button class="miniButton">Eliminar</button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <!-- Controles de paginación -->
+        <div class="pagination">
+            {% if trabajadores.has_previous %}
+                <a href="?page=1"><button>Primera Página</button></a>
+                <a href="?page={{ trabajadores.previous_page_number }}"><button>Anterior Página</button></a>
+            {% endif %}
+
+            <span>Página {{ trabajadores.number }} de {{ trabajadores.paginator.num_pages }}</span>
+
+            {% if trabajadores.has_next %}
+                <a href="?page={{ trabajadores.next_page_number }}"><button>Siguiente Página</button></a>
+                <a href="?page={{ trabajadores.paginator.num_pages }}"><button>Última Página</button></a>
+            {% endif %}
+        </div>
+
+        <a href="{% url 'home' %}"><button>Regresar al Home</button></a>
     </div>
-    
 </body>
 </html>

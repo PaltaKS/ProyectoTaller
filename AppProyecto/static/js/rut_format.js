@@ -1,23 +1,46 @@
-// Función para formatear el RUT en tiempo real
-function formatearRut(rutInput) {
-    let rut = rutInput.value.replace(/\./g, '').replace('-', ''); // Eliminar puntos y guion
+function limpiarRut(rut) {
+    // Elimina puntos y guión, y convierte a mayúsculas
+    return rut.replace(/\./g, '').replace(/-/g, '').toUpperCase();
+}
 
-    // Permitir que el último carácter sea "K" o un número
-    if (rut.length > 0) {
-        let dv = rut.slice(-1).toUpperCase(); // Obtener el dígito verificador en mayúscula
+function formatearRut(input) {
+    let rut = limpiarRut(input.value);
+    if (rut.length > 1) {
         let cuerpo = rut.slice(0, -1);
+        let dv = rut.slice(-1);
+        input.value = cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + '-' + dv;
+    }
+}
 
-        // Asegurarse de que el cuerpo solo contenga números
-        if (!/^\d+$/.test(cuerpo) && cuerpo.length > 0) {
-            rutInput.value = ''; // Limpiar el campo si el formato es incorrecto
-            return;
-        }
+function calcularDigitoVerificador(rut) {
+    let suma = 0;
+    let multiplicador = 2;
+    for (let i = rut.length - 1; i >= 0; i--) {
+        suma += parseInt(rut[i]) * multiplicador;
+        multiplicador = multiplicador < 7 ? multiplicador + 1 : 2;
+    }
+    let dv = 11 - (suma % 11);
+    if (dv === 11) return '0';
+    if (dv === 10) return 'K';
+    return dv.toString();
+}
 
-        // Formatear el RUT con puntos y guion
-        if (cuerpo.length <= 7) {
-            rutInput.value = cuerpo.replace(/^(\d{1,2})(\d{3})(\d{3})$/, '$1.$2.$3') + '-' + dv;
-        } else {
-            rutInput.value = cuerpo.replace(/^(\d{1,2})(\d{3})(\d{3})$/, '$1.$2.$3') + '-' + dv;
-        }
+function validarRut(input) {
+    let rut = limpiarRut(input.value);
+    if (rut.length < 2) {
+        input.setCustomValidity("RUT demasiado corto");
+        return;
+    }
+
+    let cuerpo = rut.slice(0, -1);
+    let dv = rut.slice(-1).toUpperCase();
+    let dvCalculado = calcularDigitoVerificador(cuerpo);
+
+    if (dvCalculado !== dv) {
+        alert("RUT inválido");
+        input.setCustomValidity("RUT inválido");
+    } else {
+        alert("Rut Valido")
+        input.setCustomValidity(""); // RUT válido
     }
 }

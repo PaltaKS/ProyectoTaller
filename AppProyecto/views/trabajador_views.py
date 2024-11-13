@@ -2,10 +2,17 @@
 from AppProyecto.models import Trabajador, Genero
 from django.shortcuts import render, redirect, get_object_or_404
 from AppProyecto.services.trabajador_service import TrabajadorService
+from django.core.paginator import Paginator
 
 def listar_trabajadores(request):
-    trabajadores = TrabajadorService.listar_trabajadores()
-    return render(request, 'trabajadores/lista.html', {'trabajadores': trabajadores})
+    trabajadores_list = Trabajador.objects.all()  # Obtiene todos los trabajadores
+    paginator = Paginator(trabajadores_list, 5)   # Divide en páginas de 5 elementos
+
+    # Obtiene el número de página actual
+    page_number = request.GET.get('page')
+    trabajadores_page = paginator.get_page(page_number)  # Obtiene la página solicitada
+
+    return render(request, 'trabajadores/lista.html', {'trabajadores': trabajadores_page})
 
 def crear_trabajador(request):
     generos = Genero.objects.all()  # Obtener todos los géneros

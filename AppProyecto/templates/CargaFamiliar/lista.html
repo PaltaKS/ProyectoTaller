@@ -32,8 +32,8 @@
                         <td>{{ carga.rut }}</td>
                         <td>{{ carga.trabajador.nombre }}</td>
                         <td>
-                            <a href="{% url 'editar_carga_familiar' carga.id_carga_familiar %}">Editar</a>
-                            <a href="{% url 'eliminar_carga_familiar' carga.id_carga_familiar %}">Eliminar</a>
+                            <a href="{% url 'editar_carga_familiar' carga.id_carga_familiar %}"><button class="miniButton">Editar</button></a>
+                            <a href="{% url 'eliminar_carga_familiar' carga.id_carga_familiar %}"><button class="miniButton">Eliminar</button></a>
                         </td>
                     </tr>
                 {% empty %}
