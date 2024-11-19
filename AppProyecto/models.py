@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
+from django.core.validators import EmailValidator
 # Create your models here.
 
 
@@ -80,10 +81,18 @@ class RolPrivilegio(models.Model):
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)  # ID de Usuario
-    trabajador = models.OneToOneField(Trabajador, on_delete=models.CASCADE, unique=True)
-    rol = models.ForeignKey(Rol, on_delete=models.SET_NULL, null=True)
-    nombre_usuario = models.CharField(max_length=50, unique=True)
-    contrasena = models.CharField(max_length=100)
+    trabajador = models.OneToOneField(
+        'Trabajador', on_delete=models.CASCADE, unique=True
+    )  # Relación uno a uno con Trabajador
+    rol = models.ForeignKey('Rol', on_delete=models.SET_NULL, null=True)  # Relación con Rol
+    nombre_usuario = models.CharField(max_length=50, unique=True)  # Nombre de usuario único
+    contrasena = models.CharField(max_length=100)  # Contraseña hasheada
+    email = models.CharField(
+        max_length=100,
+        unique=True,
+        validators=[EmailValidator(message="Ingrese un correo electrónico válido.")],
+        default="example@example.com"  # Valor predeterminado para filas existentes
+    )
 
     class Meta:
         verbose_name = 'Usuario'
@@ -95,7 +104,7 @@ class Usuario(models.Model):
 
     def save(self, *args, **kwargs):
         # Hashear la contraseña antes de guardar
-        if self.contrasena:  # Solo hasheamos si la contraseña ha sido proporcionada
+        if self.contrasena and not self.contrasena.startswith("pbkdf2_sha256$"):
             self.contrasena = make_password(self.contrasena)
         super(Usuario, self).save(*args, **kwargs)
 
