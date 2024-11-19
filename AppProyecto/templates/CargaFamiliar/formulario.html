@@ -27,6 +27,8 @@
 
             <label for="rut">RUT:</label>
             <input type="text" name="rut" id="rut" oninput="formatearRut(this)" maxlength="12" value="{{ trabajador.rut }}" {% if trabajador %}readonly{% endif %} required placeholder="12.345.678-9"><br>
+            <label id="Invalido" style="display: none; color: red;"> <b> Invalido </b> </label>
+            <label id="Valido" style="display: none; color: green;"> <b> Rut Valido </b> </label>
 
             <label for="trabajador">Trabajador:</label>
             <select id="trabajador" name="trabajador" required>

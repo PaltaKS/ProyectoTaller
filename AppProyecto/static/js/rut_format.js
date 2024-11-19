@@ -25,8 +25,10 @@ function calcularDigitoVerificador(rut) {
     return dv.toString();
 }
 
-function validarRut(input) {
+function validarRut(input, idInput) {
     let rut = limpiarRut(input.value);
+    let inputRut = document.getElementById(idInput)
+
     if (rut.length < 2) {
         input.setCustomValidity("RUT demasiado corto");
         return;
@@ -37,10 +39,20 @@ function validarRut(input) {
     let dvCalculado = calcularDigitoVerificador(cuerpo);
 
     if (dvCalculado !== dv) {
-        alert("RUT inválido");
+        // alert("RUT inválido");
         input.setCustomValidity("RUT inválido");
+        // return false
+        document.getElementById("Invalido").style.display = "inline"
+        document.getElementById("Valido").style.display = "none"
+
+        inputRut.style.border = "1px solid red"
     } else {
-        alert("Rut Valido")
+        // alert("Rut Valido")
         input.setCustomValidity(""); // RUT válido
+        // return true
+        document.getElementById("Valido").style.display = "inline"
+        document.getElementById("Invalido").style.display = "none"
+
+        inputRut.style.border = "1px solid green"
     }
 }

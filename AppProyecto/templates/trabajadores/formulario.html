@@ -13,8 +13,12 @@
         <form method="post">
             {% csrf_token %}
             
-            <label for="rut">RUT:</label>
-            <input type="text" name="rut" id="rut" oninput="formatearRut(this)" onblur="validarRut(this)" maxlength="12" value="{{ trabajador.rut }}" {% if trabajador %}readonly{% endif %} required placeholder="12.345.678-9"><br>
+            <div style="padding-bottom: 30px;">
+                <label for="rut">RUT:</label>
+                <input type="text" name="rut" id="rut" oninput="formatearRut(this)" onblur="validarRut(this,'rut')" maxlength="12" value="{{ trabajador.rut }}" {% if trabajador %}readonly{% endif %} required placeholder="12.345.678-9"><br>
+                <label id="Invalido" style="display: none; color: red;"> <b> Invalido </b> </label>
+                <label id="Valido" style="display: none; color: green;"> <b> Rut Valido </b> </label>
+            </div>
 
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" value="{{ trabajador.nombre }}" required><br>
