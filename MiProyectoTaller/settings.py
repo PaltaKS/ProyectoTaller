@@ -138,3 +138,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'  # Nombre de la URL para el login
 LOGIN_REDIRECT_URL = 'home'  # Donde redirigir después de un login exitoso
 LOGOUT_REDIRECT_URL = 'login'  # Donde redirigir después de cerrar sesión
+
+
+## Enviar Correo de Pruebas Para Recuperacion de Contrasena
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bpavez03@gmail.com'  # Tu dirección de correo Hotmail
+EMAIL_HOST_PASSWORD = 'nnmg dhve dnae vigw'  # Contraseña de tu cuenta Hotmail
+

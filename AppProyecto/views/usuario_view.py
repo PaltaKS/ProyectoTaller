@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from AppProyecto.models import Usuario, Rol, Trabajador
 from AppProyecto.services.usuario_service import UsuarioService
+from AppProyecto.repositories.usuario_repository import UsuarioRepository
 
 # Listar Usuarios
 def listar_usuarios(request):
@@ -10,32 +11,56 @@ def listar_usuarios(request):
 
 # Crear Usuario
 def crear_usuario(request):
-    trabajadores = Trabajador.objects.all()
-    roles = Rol.objects.all()
+    # Obtener datos para los select del formulario
+    trabajadores = UsuarioRepository.obtener_todos_los_trabajadores()
+    roles = UsuarioRepository.obtener_todos_los_roles()
+    
     if request.method == 'POST':
+        # Recibir datos del formulario
         nombre_usuario = request.POST.get('nombre_usuario')
-        trabajador_id = request.POST.get('trabajador')  # Asignar el trabajador
-        rol_id = request.POST.get('rol')  # Asignar el rol
+        trabajador_id = request.POST.get('trabajador')
+        rol_id = request.POST.get('rol')
+        email = request.POST.get('email')
         contrasena = request.POST.get('contrasena')
-        UsuarioService.crear_usuario(nombre_usuario, trabajador_id, rol_id, contrasena)
-        return redirect('lista_usuarios')
+        
+        # Delegar la creación de usuario al servicio
+        UsuarioService.crear_usuario(
+            nombre_usuario=nombre_usuario,
+            trabajador_id=trabajador_id,
+            rol_id=rol_id,
+            email=email,
+            contrasena=contrasena
+        )
+        return redirect('lista_usuarios')  # Redirigir a la lista de usuarios
+    
     return render(request, 'usuarios/formulario.html', {'trabajadores': trabajadores, 'roles': roles})
 
 # Actualizar Usuario
 def actualizar_usuario(request, id_usuario):
-    usuario = get_object_or_404(Usuario, pk=id_usuario)
-    trabajadores = Trabajador.objects.all()  # Obtener todos los trabajadores
-    roles = Rol.objects.all()  # Obtener todos los roles
+    usuario = UsuarioRepository.obtener_por_id(id_usuario)  # Obtener el usuario existente
+    trabajadores = UsuarioRepository.obtener_todos_los_trabajadores()
+    roles = UsuarioRepository.obtener_todos_los_roles()
+
     if request.method == 'POST':
+        # Recibir datos del formulario
         nombre_usuario = request.POST.get('nombre_usuario')
         trabajador_id = request.POST.get('trabajador')
         rol_id = request.POST.get('rol')
+        email = request.POST.get('email')
         contrasena = request.POST.get('contrasena')
 
-        UsuarioService.actualizar_usuario(id_usuario, nombre_usuario, trabajador_id, rol_id, contrasena)
-        
-        return redirect('lista_usuarios')
-    return render(request, 'usuarios/formulario.html', {'usuario': usuario, 'trabajadores': trabajadores, 'roles': roles})
+        # Delegar la actualización al servicio
+        UsuarioService.actualizar_usuario(
+            id_usuario=id_usuario,
+            nombre_usuario=nombre_usuario,
+            trabajador_id=trabajador_id,
+            rol_id=rol_id,
+            email=email,
+            contrasena=contrasena
+        )
+        return redirect('lista_usuarios')  # Redirigir a la lista de usuarios
+
+    return render(request, 'usuarios/formulario.html', {'usuario': usuario,'trabajadores': trabajadores,'roles': roles,})
 
 # Eliminar Usuario
 def eliminar_usuario(request, id_usuario):

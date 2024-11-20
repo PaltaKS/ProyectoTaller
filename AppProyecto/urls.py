@@ -5,6 +5,7 @@ from AppProyecto.views.usuario_view import listar_usuarios, crear_usuario, actua
 from AppProyecto.views.contacto_emergencia_views import listar_contactos, crear_contacto, editar_contacto, eliminar_contacto  #Contactos de Emergencia
 from AppProyecto.views.carga_familiar_views import listar_cargas_familiares, crear_carga_familiar, editar_carga_familiar, eliminar_carga_familiar # Carga Familiar
 from AppProyecto.views.datos_laborales_view import lista_datos_laborales, crear_datos_laborales, editar_datos_laborales, eliminar_datos_laborales # Datos Laborales
+from AppProyecto.views.resetear_contrasena_views import recuperar_contrasena, restablecer_contrasena # Resetear Contrasena
 from AppProyecto.views.home_views import home_view
 from AppProyecto.views.login_views import login_view
 from AppProyecto.views.logout_view import logout_view
@@ -45,5 +46,8 @@ urlpatterns = [
     path('datos_laborales/crear/', crear_datos_laborales, name='crear_datos_laborales'),
     path('datos_laborales/editar/<int:id_datos_laborales>/', editar_datos_laborales, name='editar_datos_laborales'),
     path('datos_laborales/eliminar/<int:id_datos_laborales>/', eliminar_datos_laborales, name='eliminar_datos_laborales'),
+
+    path('recuperar-contrasena/', recuperar_contrasena, name='recuperar_contrasena'),
+    path('restablecer-contrasena/<str:token>/', restablecer_contrasena, name='restablecer_contrasena'),
 
 ]

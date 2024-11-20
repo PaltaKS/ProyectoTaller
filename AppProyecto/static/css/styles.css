@@ -55,7 +55,7 @@ table {
 
 /* Estilo para celdas de encabezado y contenido de la tabla */
 th, td {
-    text-align: left;              /* Alinear texto a la izquierda */
+    text-align: center;              /* Alinear texto a la izquierda */
     padding: 12px;                 /* Espacio interno de las celdas */
     border-bottom: 1px solid var(--color-border); /* Borde inferior de las celdas */
 }

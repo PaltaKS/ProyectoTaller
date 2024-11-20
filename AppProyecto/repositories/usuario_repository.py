@@ -1,5 +1,4 @@
 from AppProyecto.models import Usuario, Trabajador, Rol
-from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
 
 class UsuarioRepository:
@@ -8,55 +7,29 @@ class UsuarioRepository:
     def listar():
         return Usuario.objects.all()
 
+
     @staticmethod
     def obtener_por_id(id_usuario):
+        """Obtiene un usuario por su ID."""
         return get_object_or_404(Usuario, id_usuario=id_usuario)
 
 
     @staticmethod
-    def crear_usuario(nombre_usuario, trabajador_id, rol_id, contrasena):
-
-        obtener_trabajador = Trabajador.objects.get(pk=trabajador_id)
-        obtener_rol = Rol.objects.get(pk=rol_id)
-
-        nuevo_usuario = Usuario(
-           trabajador = obtener_trabajador,   #asigna el trabajador
-           rol = obtener_rol,     #asigna el rol
-           nombre_usuario = nombre_usuario,
-           contrasena = contrasena
+    def crear_usuario(nombre_usuario, trabajador, rol, contrasena, email):
+        """Crea un nuevo usuario en la base de datos."""
+        return Usuario.objects.create(
+            nombre_usuario=nombre_usuario,
+            trabajador=trabajador,
+            rol=rol,
+            email=email,
+            contrasena=contrasena
         )
-        nuevo_usuario.save()
-        return nuevo_usuario
 
-
-    def actualizar_usuario(usuario_id, nombre_usuario, trabajador_id, rol_id, contrasena=None):
-        try:
-            # Obtener la instancia de Usuario a partir del usuario_id
-            usuario = Usuario.objects.get(pk=usuario_id)
-
-            # Obtener la instancia de Trabajador y Rol
-            trabajador_instance = Trabajador.objects.get(pk=trabajador_id)
-            rol_instance = Rol.objects.get(pk=rol_id)
-
-            # Actualizar los campos de Usuario
-            usuario.nombre_usuario = nombre_usuario
-            usuario.trabajador = trabajador_instance
-            usuario.rol = rol_instance
-
-            # Solo actualiza la contraseña si se proporciona una nueva
-            if contrasena:
-                usuario.contrasena = make_password(contrasena)
-
-            # Guardar cambios en la base de datos
-            usuario.save()
-            return usuario
-
-        except Usuario.DoesNotExist:
-            raise ValueError("El usuario especificado no existe.")
-        except Trabajador.DoesNotExist:
-            raise ValueError("El trabajador especificado no existe.")
-        except Rol.DoesNotExist:
-            raise ValueError("El rol especificado no existe.")
+        
+    @staticmethod
+    def actualizar_usuario(usuario):
+        """Guarda los cambios en un usuario existente."""
+        usuario.save()
 
 
     @staticmethod
@@ -76,3 +49,44 @@ class UsuarioRepository:
             return Usuario.objects.get(nombre_usuario=nombre_usuario)
         except Usuario.DoesNotExist:
             return None  # Retorna None si no se encuentra el usuario 
+
+
+    ## solo obtenemos datos por id
+
+    @staticmethod   
+    def obtener_trabajador_por_id(trabajador_id):
+        """Obtiene un trabajador por su ID."""
+        return Trabajador.objects.get(id=trabajador_id)
+    
+    @staticmethod
+    def obtener_rol_por_id(rol_id):
+        """Obtiene un rol por su ID."""
+        return Rol.objects.get(id=rol_id) if rol_id else None
+    
+    @staticmethod
+    def obtener_todos_los_trabajadores():
+        """Obtiene todos los trabajadores disponibles."""
+        return Trabajador.objects.all()
+    
+    @staticmethod
+    def obtener_todos_los_roles():
+        """Obtiene todos los roles disponibles."""
+        return Rol.objects.all()
+    
+
+    ### Resetear Contrasena
+
+    @staticmethod
+    def obtener_por_email(email):
+        try:
+            return Usuario.objects.get(email=email)
+        except Usuario.DoesNotExist:
+            return None
+
+    @staticmethod
+    def obtener_por_token(token):
+        try:
+            return Usuario.objects.get(token_recuperacion=token)
+        except Usuario.DoesNotExist:
+            return None
+

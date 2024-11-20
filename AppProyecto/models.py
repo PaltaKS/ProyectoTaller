@@ -81,18 +81,13 @@ class RolPrivilegio(models.Model):
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)  # ID de Usuario
-    trabajador = models.OneToOneField(
-        'Trabajador', on_delete=models.CASCADE, unique=True
-    )  # Relación uno a uno con Trabajador
+    trabajador = models.OneToOneField('Trabajador', on_delete=models.CASCADE, unique=True)  # Relación uno a uno con Trabajador
     rol = models.ForeignKey('Rol', on_delete=models.SET_NULL, null=True)  # Relación con Rol
     nombre_usuario = models.CharField(max_length=50, unique=True)  # Nombre de usuario único
     contrasena = models.CharField(max_length=100)  # Contraseña hasheada
-    email = models.CharField(
-        max_length=100,
-        unique=True,
-        validators=[EmailValidator(message="Ingrese un correo electrónico válido.")],
-        default="example@example.com"  # Valor predeterminado para filas existentes
-    )
+    email = models.CharField(max_length=100, unique=True)
+    token_recuperacion = models.CharField(max_length=64, null=True, blank=True)
+
 
     class Meta:
         verbose_name = 'Usuario'

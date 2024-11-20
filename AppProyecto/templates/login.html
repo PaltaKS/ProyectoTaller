@@ -6,6 +6,7 @@
     <title>Login</title>
     {% load static %} 
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/login.js' %}"></script> <!-- Incluye el archivo JavaScript -->
 </head>
 <body>
     <div class="container">
@@ -20,9 +21,13 @@
             
             <button type="submit">Iniciar Sesión</button>
         </form>
+        <a href="{% url 'recuperar_contrasena' %}" style="color: blue;"> Olvide Mi Contraseña </a>
+        
+        
         {% if error %}
-        <div class="error-message">{{ error }}</div>
+            <div class="error-message">{{ error }}</div>
         {% endif %}
+    
     </div>
     
     <!-- Overlay de carga con círculo giratorio -->
@@ -30,8 +35,7 @@
         <div class="spinner-circle"></div>
     </div>
 
-    <!-- Incluye el archivo JavaScript -->
-    <script src="{% static 'js/login.js' %}"></script>
+    
 
 </body>
 </html>

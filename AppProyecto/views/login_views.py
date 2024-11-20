@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import check_password
 from AppProyecto.models import Usuario
 
+
 def login_view(request):
     if request.method == 'POST':
         nombre_usuario = request.POST.get('nombre_usuario')

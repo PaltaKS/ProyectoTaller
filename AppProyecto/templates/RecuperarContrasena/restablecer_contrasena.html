@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        .mensaje-exito { color: green; font-weight: bold; }
+        .mensaje-error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Restablecer Contraseña</h1>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="new_password">Nueva contraseña:</label><br>
+            <input type="password" id="new_password" name="new_password" required><br><br>
+
+            <!-- Mostrar mensaje de éxito -->
+            {% if mensaje_exito %}
+            <p class="mensaje-exito">{{ mensaje_exito }}</p>
+            {% endif %}
+
+            <!-- Mostrar mensaje de error -->
+            {% if mensaje_error %}
+            <p class="mensaje-error">{{ mensaje_error }}</p>
+            {% endif %}
+
+            <button type="submit">Restablecer contraseña</button>
+        </form>
+        <a href="{% url 'login' %}"><button> Regresar </button></a>
+
+    </div>
+</body>
+</html>
