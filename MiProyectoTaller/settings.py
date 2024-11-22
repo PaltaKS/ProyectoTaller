@@ -148,4 +148,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bpavez03@gmail.com'  # Tu dirección de correo Gmail
 EMAIL_HOST_PASSWORD = 'nnmg dhve dnae vigw'  # Contraseña de tu cuenta Gmail
-

@@ -122,10 +122,10 @@ class ContactoEmergencia(models.Model):
 
 class CargaFamiliar(models.Model):
     id_carga_familiar = models.AutoField(primary_key=True)
-    trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)  
+    trabajador = models.ForeignKey('Trabajador', on_delete=models.CASCADE)  # Relación con Trabajador
     nombre = models.CharField(max_length=100)
-    parentesco = models.CharField(max_length=50, blank=True, null=True)
-    genero = models.ForeignKey(Genero, on_delete=models.SET_NULL, null=True)  
+    parentesco = models.ForeignKey('Parentesco', on_delete=models.SET_NULL, null=True)  # Relación con Parentesco
+    genero = models.ForeignKey('Genero', on_delete=models.SET_NULL, null=True)  # Relación con Genero
     rut = models.CharField(max_length=20, unique=True)
 
     class Meta:
@@ -135,6 +135,21 @@ class CargaFamiliar(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Parentesco(models.Model):
+    id_parentesco = models.AutoField(primary_key=True)  # ID explícito como clave primaria
+    nombre = models.CharField(max_length=50, unique=True)  # Nombre del parentesco
+
+    class Meta:
+        verbose_name = 'Parentesco'
+        verbose_name_plural = 'Parentescos'
+        db_table = 'tbl_parentesco'
+
+    def __str__(self):
+        return self.nombre
+
+
 
 
 class DatosLaborales(models.Model):

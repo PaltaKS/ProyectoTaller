@@ -19,7 +19,7 @@ body {
 
 /* Estilo para contenedores principales */
 .container {
-    max-width: 800px;               /* Ancho máximo del contenedor */
+    max-width: 900px;               /* Ancho máximo del contenedor */
     margin: auto;                   /* Centrado automático del contenedor */
     background-color: var(--color-container-bg); /* Fondo blanco para el contenedor */
     padding: 20px;                  /* Espacio interno del contenedor */
@@ -84,6 +84,7 @@ button {
     margin: 10px auto;                 /* Espaciado y centrado automático del botón */
     width: 800px;                       /* Ancho fijo para los botones */
     height: 30px;                       /* Altura fija para los botones */
+    display: flex;
 }
 
 /* Estilo para el efecto hover en los botones */
@@ -199,20 +200,6 @@ li {
     align-items: center;                       /* Centrar verticalmente el contenido */
 }
 
-/* Estilos para el perfil */
-.profile {
-    padding: 20px;                             /* Espaciado interno en el contenedor del perfil */
-    text-align: center;                        /* Centrar texto en el contenedor del perfil */
-}
-
-/* Imagen del perfil */
-.profile-img {
-    width: 150px;                             /* Ancho de la imagen del perfil */
-    height: 150px;                            /* Alto de la imagen del perfil */
-    border-radius: 50%;                       /* Hacer la imagen circular */
-    margin-bottom: 20px;                      /* Margen inferior para separar de otros elementos */
-}
-
 /* Estilos para párrafos */
 p {
     margin: 10px 0;                           /* Margen superior e inferior para los párrafos */
@@ -223,12 +210,7 @@ strong {
     color: var(--color-text);                  /* Color del texto en negrita, usando la variable de color */
 }
 
-/* Estilos para mensajes de alerta */
-.alert {
-    padding: 10px;                            /* Espaciado interno en el mensaje de alerta */
-    background-color: #FFEEEE;                /* Fondo claro para el mensaje de alerta */
-    color: #D8000C;                           /* Color de texto rojo para el mensaje de alerta */
-}
+
 
 /* Estilos para el pie de página */
 footer {
@@ -280,12 +262,11 @@ footer {
 
 
 
-
 .error-message {
     display: flex;
     align-items: center;
-    color: #D8000C; /* Color del texto rojo */
-    background-color: #FFBABA; /* Fondo rojo claro */
+    color: #D8000C;
+    background-color: #FFBABA; 
     border: 1px solid #D8000C;
     padding: 10px;
     margin-bottom: 15px;
@@ -295,6 +276,6 @@ footer {
 
 /* Icono de advertencia en la viñeta */
 .error-message::before {
-    content: "⚠️"; /* Ícono de advertencia */
+    content: "⚠️"; 
     margin-right: 10px;
 }

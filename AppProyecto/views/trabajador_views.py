@@ -15,18 +15,41 @@ def listar_trabajadores(request):
     return render(request, 'trabajadores/lista.html', {'trabajadores': trabajadores_page})
 
 def crear_trabajador(request):
-    generos = Genero.objects.all()  # Obtener todos los géneros
-    if request.method == 'POST':
-        # Obtener datos del formulario
-        rut = request.POST.get('rut')
-        nombre = request.POST.get('nombre')
-        genero_id = request.POST.get('genero')  # ID del género
-        direccion = request.POST.get('direccion')
-        telefono = request.POST.get('telefono')
-        TrabajadorService.crear_trabajador(rut, nombre, genero_id, direccion, telefono)
-        return redirect('listar_trabajadores')  # Redirigir a la lista de trabajadores
+    if request.method == "POST":
+        try:
+            # Obtener datos del formulario
+            data = {
+                "rut": request.POST.get("rut"),
+                "nombre": request.POST.get("nombre"),
+                "genero_id": request.POST.get("genero"),  # ID de la tabla Genero
+                "direccion": request.POST.get("direccion"),
+                "telefono": request.POST.get("telefono"),
+            }
 
-    return render(request, 'trabajadores/formulario.html', {'generos': generos})
+            # Crear trabajador
+            trabajador = TrabajadorService.crear_trabajador_service(data)
+
+            # Redirigir a una página de éxito o lista
+            return render(request, "trabajadores/success.html", {
+                "message": "Trabajador creado exitosamente.",
+                "trabajador": trabajador,
+            })
+        except ValueError as e:
+            # Mostrar el error en el formulario
+            return render(request, "trabajadores/formulario.html", {
+                "error": str(e),
+                "data": data,  # Para mantener los datos en el formulario
+            })
+        except Exception:
+            # Error genérico
+            return render(request, "trabajadores/formulario.html", {
+                "error": "Ocurrió un error inesperado.",
+                "data": request.POST,  # Mantener los datos ingresados
+            })
+
+    # Si no es POST, renderizar formulario vacío
+    generos = Genero.objects.all()
+    return render(request, "trabajadores/formulario.html", {'generos': generos})
 
 def actualizar_trabajador(request, rut):
     trabajador = get_object_or_404(Trabajador, rut=rut)

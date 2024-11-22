@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from AppProyecto.services.carga_familiar_services import CargaFamiliarService
-from AppProyecto.models import Trabajador, Genero
+from AppProyecto.models import Trabajador, Genero, Parentesco
 
 def listar_cargas_familiares(request):
     cargas_familiares = CargaFamiliarService.listar_cargas_familiares()
@@ -15,9 +15,10 @@ def crear_carga_familiar(request):
         trabajador_id = request.POST.get('trabajador')
         CargaFamiliarService.crear_carga(trabajador_id, nombre, parentesco, genero_id, rut)
         return redirect('listar_cargas_familiares')
+    parentescos = Parentesco.objects.all()
     generos = Genero.objects.all()
     trabajadores = Trabajador.objects.all()
-    return render(request, 'CargaFamiliar/formulario.html', {'trabajadores': trabajadores, 'generos': generos})
+    return render(request, 'CargaFamiliar/formulario.html', {'trabajadores': trabajadores, 'generos': generos, 'parentescos': parentescos})
 
 def editar_carga_familiar(request, carga_id):
     if request.method == 'POST':

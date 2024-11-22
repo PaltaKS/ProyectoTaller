@@ -106,7 +106,7 @@ class UsuarioService:
         usuario = UsuarioRepository.obtener_por_token(token)
         if not usuario:
             return False  # Token inválido
-
+        
         # Hasheamos la nueva contraseña antes de asignarla al usuario
         usuario.contrasena = make_password(nueva_contrasena)
         usuario.token_recuperacion = None  # Invalida el token después de usarlo
