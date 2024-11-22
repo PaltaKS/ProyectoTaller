@@ -139,7 +139,6 @@ LOGIN_URL = 'login'  # Nombre de la URL para el login
 LOGIN_REDIRECT_URL = 'home'  # Donde redirigir después de un login exitoso
 LOGOUT_REDIRECT_URL = 'login'  # Donde redirigir después de cerrar sesión
 
-
 ## Enviar Correo de Pruebas Para Recuperacion de Contrasena
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
