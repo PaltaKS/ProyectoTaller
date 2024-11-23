@@ -1,5 +1,5 @@
 from AppProyecto.repositories.carga_familiar_repositories import CargaFamiliarRepository
-from AppProyecto.models import Trabajador
+from AppProyecto.models import Trabajador, Parentesco
 
 class CargaFamiliarService:
 
@@ -12,8 +12,13 @@ class CargaFamiliarService:
         return CargaFamiliarRepository.obtener_por_id(carga_id)
 
     @staticmethod
-    def crear_carga(trabajador_id, nombre, parentesco, genero_id, rut):
+    def crear_carga(trabajador_id, nombre, parentesco_id, genero_id, rut):
         trabajador = Trabajador.objects.get(rut=trabajador_id)
+        parentesco = Parentesco.objects.get(pk=parentesco_id)
+
+
+
+
         return CargaFamiliarRepository.crear(trabajador, nombre, parentesco, genero_id, rut)
 
     @staticmethod

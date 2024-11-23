@@ -12,21 +12,8 @@ class TrabajadorService:
 
     @staticmethod
     def crear_trabajador(data):
-        """
-        Crea un trabajador si el RUT no está registrado.
-        """
-        rut = data.get('rut')
-        if not rut:
-            raise ValueError("El RUT es obligatorio.")
-
-        # Verificar si ya existe un trabajador con el RUT
-        trabajador_existente = TrabajadorRepository.get_trabajador_by_rut(rut)
-        if trabajador_existente:
-            raise ValueError(f"El RUT {rut} ya está asignado a un trabajador existente.")
-
-        # Crear el trabajador
-        trabajador = TrabajadorRepository.create_trabajador(data)
-        return trabajador
+        
+        return TrabajadorRepository.create_trabajador(data)
 
     @staticmethod
     def actualizar_trabajador(rut, data):
