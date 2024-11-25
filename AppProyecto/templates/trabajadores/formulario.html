@@ -25,6 +25,7 @@
 
             <label for="genero">Género:</label>
             <select name="genero" required>
+                <option value="">Selecciona un Genero</option>
                 {% for genero in generos %}
                     <option value="{{ genero.id_genero }}" {% if genero.id_genero == trabajador.genero.id_genero %}selected{% endif %}>{{ genero.nombre }}</option>
                 {% endfor %}
