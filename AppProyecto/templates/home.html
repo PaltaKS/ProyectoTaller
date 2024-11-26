@@ -20,6 +20,8 @@
                 <a href="{% url 'listar_contactos' %}"><button>Gestionar Contactos de Emergencia</button></a>
                 <a href="{% url 'listar_cargas_familiares' %}"><button>Gestionar Carga Familiar</button></a>
                 <a href="{% url 'lista_datos_laborales' %}"><button>Gestionar Datos Laborales</button></a>
+                <a href="{% url 'trabajadores_por_genero' %}"><button>Procediminetos Almacenados</button></a>
+            
             {% elif usuario.rol.nombre == 'RRHH' %}
                 <a href="{% url 'listar_trabajadores' %}"><Button>Gestionar Trabajadores</Button></a>
             {% elif usuario.rol.nombre == 'EMPLEADO' %}

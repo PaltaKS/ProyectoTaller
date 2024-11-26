@@ -6,49 +6,88 @@
     {% load static %} 
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="{% static 'js/rut_format.js' %}"></script>
+    <style>
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>{% if carga_familiar %}Editar{% else %}Crear{% endif %} Carga Familiar</h1>
+       
+        {% if messages %}
+            {% for message in messages %}
+                <div class="error-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
         <form method="post" action="">
-            {% csrf_token %}
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" value="{{ carga_familiar.nombre|default_if_none:'' }}" required><br>
+           {% csrf_token %}
+           
+           <div class="form-group">
+               <label for="nombre">Nombre:</label>
+               <input type="text" id="nombre" name="nombre" value="{{ values.nombre|default:'' }}">
+           </div>
 
+           
             <label for="parentesco">Parentesco:</label>
-            <select name="parentesco" id="parentesco" required>
-                <option value="" disabled selected>Selecciona un parentesco</option>
-                {% for parentesco in parentescos %}
-                    <option value="{{ parentesco.id }}">{{ parentesco.nombre }}</option>
-                {% endfor %}
+            <select name="parentesco" id="parentesco">
+            <option value="">Selecciona un parentesco</option>
+            {% for parentesco in parentescos %}
+                <option value="{{ parentesco.id_parentesco }}" 
+                        {% if values.parentesco == parentesco.id_parentesco|stringformat:"s" %}selected{% endif %}>
+                    {{ parentesco.nombre }}
+                </option>
+            {% endfor %}
             </select>
+            
 
+          
             <label for="genero">Género:</label>
-            <select name="genero" required>
-                <option value="genero" disabled selected>Selecciona un genero</option>
-                {% for genero in generos %}
-                    <option value="{{ genero.id_genero }}" {% if genero.id_genero == trabajador.genero.id_genero %}selected{% endif %}>{{ genero.nombre }}</option>
-                {% endfor %}
-            </select><br>
+            <select name="genero" id="genero">
+            <option value="">Selecciona un género</option>
+            {% for genero in generos %}
+                <option value="{{ genero.id_genero }}" 
+                        {% if values.genero == genero.id_genero|stringformat:"s" %}selected{% endif %}>
+                    {{ genero.nombre }}
+                </option>
+            {% endfor %}
+            </select>
+            
 
+            
             <label for="rut">RUT:</label>
-            <input type="text" name="rut" id="rut" oninput="formatearRut(this)" maxlength="12" value="{{ trabajador.rut }}" {% if trabajador %}readonly{% endif %} required placeholder="12.345.678-9"><br>
-            <label id="Invalido" style="display: none; color: red;"> <b> Invalido </b> </label>
-            <label id="Valido" style="display: none; color: green;"> <b> Rut Valido </b> </label>
+            <input type="text" name="rut" id="rut" 
+                    oninput="formatearRut(this)" 
+                    maxlength="12" 
+                    value="{{ values.rut|default:'' }}"
+                    placeholder="12.345.678-9">
+            <label id="Invalido" style="display: none; color: red;"><b>Inválido</b></label>
+            <label id="Valido" style="display: none; color: green;"><b>RUT Válido</b></label>
+           
 
+           
             <label for="trabajador">Trabajador:</label>
-            <select id="trabajador" name="trabajador" required>
-                <option value="trabajador" disabled selected>Selecciona un trabajador</option>
-                {% for trabajador in trabajadores %}
-                    <option value="{{ trabajador.rut }}" {% if carga_familiar.trabajador and trabajador.rut == carga_familiar.trabajador.rut %}selected{% endif %}>
-                        {{ trabajador.nombre }}
-                    </option>
-                {% endfor %}
-            </select><br>
+            <select name="trabajador" id="trabajador">
+            <option value="">Selecciona un trabajador</option>
+            {% for trabajador in trabajadores %}
+                <option value="{{ trabajador.rut }}"
+                        {% if values.trabajador == trabajador.rut %}selected{% endif %}>
+                    {{ trabajador.nombre }}
+                </option>
+            {% endfor %}
+            </select>
+           
 
             <button type="submit">{% if carga_familiar %}Actualizar{% else %}Crear{% endif %}</button>
         </form>
-        <a href="{% url 'listar_cargas_familiares' %}"><button>Volver a la lista</button></a>
+        <a href="{% url 'listar_cargas_familiares' %}"><button type="button">Volver a la lista</button></a>
     </div>
 </body>
 </html>

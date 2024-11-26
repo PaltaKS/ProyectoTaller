@@ -10,31 +10,64 @@
 <body>
     <div class="container">
         <h1>{% if trabajador %}Editar Trabajador{% else %}Crear Trabajador{% endif %}</h1>
+        
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="error-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
         <form method="post">
             {% csrf_token %}
             
             <div style="padding-bottom: 30px;">
                 <label for="rut">RUT:</label>
-                <input type="text" name="rut" id="rut" oninput="formatearRut(this)" onblur="validarRut(this,'rut')" maxlength="12" value="{{ trabajador.rut }}" {% if trabajador %}readonly{% endif %} required placeholder="12.345.678-9"><br>
+                <input type="text" 
+                       name="rut" 
+                       id="rut" 
+                       oninput="formatearRut(this)" 
+                       onblur="validarRut(this,'rut')" 
+                       maxlength="12" 
+                       value="{% if values.rut %}{{ values.rut }}{% else %}{{ trabajador.rut }}{% endif %}"
+                       {% if trabajador %}readonly{% endif %} 
+                       placeholder="12.345.678-9"><br>
                 <label id="Invalido" style="display: none; color: red;"> <b> Invalido </b> </label>
                 <label id="Valido" style="display: none; color: green;"> <b> Rut Valido </b> </label>
             </div>
 
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" value="{{ trabajador.nombre }}" required><br>
+            <input type="text" 
+                   name="nombre" 
+                   value="{% if values.nombre %}{{ values.nombre }}{% else %}{{ trabajador.nombre }}{% endif %}"><br>
 
             <label for="genero">Género:</label>
             <select name="genero" required>
+                <option value="">Selecciona un Genero</option>
                 {% for genero in generos %}
-                    <option value="{{ genero.id_genero }}" {% if genero.id_genero == trabajador.genero.id_genero %}selected{% endif %}>{{ genero.nombre }}</option>
+                    <option value="{{ genero.id_genero }}" 
+                            {% if values.genero_id %}
+                                {% if genero.id_genero|stringformat:"s" == values.genero_id %}selected{% endif %}
+                            {% else %}
+                                {% if genero.id_genero == trabajador.genero.id_genero %}selected{% endif %}
+                            {% endif %}>
+                        {{ genero.nombre }}
+                    </option>
                 {% endfor %}
             </select><br>
 
             <label for="telefono">Teléfono:</label>
-            <input type="text" name="telefono" value="{{ trabajador.telefono }}"><br>
+            <input type="text" 
+                   name="telefono" 
+                   value="{% if values.telefono %}{{ values.telefono }}{% else %}{{ trabajador.telefono }}{% endif %}"><br>
 
             <label for="direccion">Dirección:</label>
-            <input type="text" name="direccion" value="{{ trabajador.direccion }}"><br>
+            <input type="text" 
+                   name="direccion" 
+                   value="{% if values.direccion %}{{ values.direccion }}{% else %}{{ trabajador.direccion }}{% endif %}"><br>
 
             <button type="submit">{% if trabajador %}Actualizar{% else %}Crear{% endif %}</button>
         </form>
