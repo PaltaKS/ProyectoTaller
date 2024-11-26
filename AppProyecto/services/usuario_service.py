@@ -37,6 +37,8 @@ class UsuarioService:
             contrasena=contrasena
         )
 
+    
+
 
     @staticmethod
     def actualizar_usuario(id_usuario, nombre_usuario, trabajador_id, rol_id, email, contrasena):

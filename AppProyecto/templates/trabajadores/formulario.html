@@ -62,6 +62,7 @@
             <label for="telefono">Teléfono:</label>
             <input type="text" 
                    name="telefono" 
+                   maxlength="15"
                    value="{% if values.telefono %}{{ values.telefono }}{% else %}{{ trabajador.telefono }}{% endif %}"><br>
 
             <label for="direccion">Dirección:</label>

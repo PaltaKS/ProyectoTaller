@@ -56,7 +56,7 @@ def crear_trabajador(request):
             validar_telefono(data["telefono"])
 
             # Crear trabajador
-            trabajador = TrabajadorService.crear_trabajador(data)
+            TrabajadorService.crear_trabajador_usuario(data)
             return redirect('listar_trabajadores')
 
         except ValueError as e:
@@ -120,16 +120,10 @@ def actualizar_trabajador(request, rut):
     return render(request, 'trabajadores/formulario.html', context)
 
 def eliminar_trabajador(request, rut):
-    trabajador = get_object_or_404(Trabajador, rut=rut)
+    trabajador = TrabajadorService.obtener_trabajador(rut)
     if request.method == 'POST':
-        try:
-            TrabajadorService.eliminar_trabajador(rut)
-            return redirect('listar_trabajadores')
-        except Exception as e:
-            return render(request, 'trabajadores/eliminar.html', {
-                'trabajador': trabajador,
-                'error': f"Error al eliminar el trabajador: {str(e)}"
-            })
+        TrabajadorService.eliminar_trabajador(rut)
+        return redirect('listar_trabajadores')
     return render(request, 'trabajadores/eliminar.html', {'trabajador': trabajador})
 
 
