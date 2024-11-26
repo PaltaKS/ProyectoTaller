@@ -1,74 +1,138 @@
-# AppProyecto/views/trabajador_views.py
 from AppProyecto.models import Trabajador, Genero
 from django.shortcuts import render, redirect, get_object_or_404
 from AppProyecto.services.trabajador_service import TrabajadorService
 from django.core.paginator import Paginator
+from django.db import IntegrityError
+import re
+
+def validar_telefono(telefono):
+    """Valida el formato básico del teléfono."""
+    if not telefono.isdigit() or len(telefono) < 8:
+        raise ValueError('El teléfono debe contener solo números y mínimo 8 dígitos')
 
 def listar_trabajadores(request):
-    trabajadores_list = Trabajador.objects.all()  # Obtiene todos los trabajadores
-    paginator = Paginator(trabajadores_list, 5)   # Divide en páginas de 5 elementos
-
-    # Obtiene el número de página actual
+    trabajadores_list = Trabajador.objects.all().order_by('nombre')
+    paginator = Paginator(trabajadores_list, 5)
     page_number = request.GET.get('page')
-    trabajadores_page = paginator.get_page(page_number)  # Obtiene la página solicitada
-
+    trabajadores_page = paginator.get_page(page_number)
     return render(request, 'trabajadores/lista.html', {'trabajadores': trabajadores_page})
 
 def crear_trabajador(request):
+    context = {
+        'generos': Genero.objects.all(),
+    }
+    
     if request.method == "POST":
         try:
-            # Obtener datos del formulario
+            # Obtener y limpiar datos del formulario
             data = {
-                "rut": request.POST.get("rut"),
-                "nombre": request.POST.get("nombre"),
-                "genero_id": request.POST.get("genero"),  # ID de la tabla Genero
-                "direccion": request.POST.get("direccion"),
-                "telefono": request.POST.get("telefono"),
+                "rut": request.POST.get("rut", "").strip(),
+                "nombre": request.POST.get("nombre", "").strip(),
+                "genero_id": request.POST.get("genero"),
+                "direccion": request.POST.get("direccion", "").strip(),
+                "telefono": request.POST.get("telefono", "").strip(),
             }
+            context['values'] = data  # Mantener los datos en caso de error
+
+            # Validaciones de campos vacíos
+            if not data["rut"]:
+                raise ValueError("El RUT es requerido")
+            if not data["nombre"]:
+                raise ValueError("El nombre es requerido")
+            if not data["genero_id"]:
+                raise ValueError("El género es requerido")
+            if not data["telefono"]:
+                raise ValueError("El teléfono es requerido")    
+            if not data["direccion"]:
+                raise ValueError("La dirección es requerida")
+            
+
+            # Validaciones de longitud
+            if len(data["nombre"]) > 100:
+                raise ValueError("El nombre no puede exceder los 100 caracteres")
+            if len(data["direccion"]) > 200:
+                raise ValueError("La dirección no puede exceder los 200 caracteres")
+
+            # Validar formato de teléfono
+            validar_telefono(data["telefono"])
 
             # Crear trabajador
-            trabajador = TrabajadorService.crear_trabajador_service(data)
+            trabajador = TrabajadorService.crear_trabajador(data)
+            return redirect('listar_trabajadores')
 
-            # Redirigir a una página de éxito o lista
-            return render(request, "trabajadores/success.html", {
-                "message": "Trabajador creado exitosamente.",
-                "trabajador": trabajador,
-            })
+            
         except ValueError as e:
-            # Mostrar el error en el formulario
-            return render(request, "trabajadores/formulario.html", {
-                "error": str(e),
-                "data": data,  # Para mantener los datos en el formulario
-            })
-        except Exception:
-            # Error genérico
-            return render(request, "trabajadores/formulario.html", {
-                "error": "Ocurrió un error inesperado.",
-                "data": request.POST,  # Mantener los datos ingresados
-            })
+            # Error de validación
+            context['error'] = str(e)
+            return render(request, "trabajadores/formulario.html", context)
+        except IntegrityError:
+            # Error de duplicación de RUT
+            context['error'] = "Ya existe un trabajador con ese RUT"
+            return render(request, "trabajadores/formulario.html", context)
+        except Exception as e:
+            # Error general
+            context['error'] = f"Ocurrió un error inesperado: {str(e)}"
+            return render(request, "trabajadores/formulario.html", context)
 
-    # Si no es POST, renderizar formulario vacío
-    generos = Genero.objects.all()
-    return render(request, "trabajadores/formulario.html", {'generos': generos})
+    return render(request, "trabajadores/formulario.html", context)
 
 def actualizar_trabajador(request, rut):
     trabajador = get_object_or_404(Trabajador, rut=rut)
-    trabajador = TrabajadorService.obtener_trabajador(rut)
-    generos = Genero.objects.all()
+    context = {
+        'trabajador': trabajador,
+        'generos': Genero.objects.all()
+    }
+    
     if request.method == 'POST':
-        data = {
-            'nombre': request.POST['nombre'],
-            'genero_id': request.POST['genero'],
-            'direccion': request.POST.get('direccion', ''),
-            'telefono': request.POST.get('telefono', ''),
-        }
-        TrabajadorService.actualizar_trabajador(rut, data)
-        return redirect('listar_trabajadores')
-    return render(request, 'trabajadores/formulario.html', {'trabajador': trabajador,'generos': generos})
+        try:
+            data = {
+                'nombre': request.POST.get('nombre', '').strip(),
+                'genero_id': request.POST.get('genero'),
+                'direccion': request.POST.get('direccion', '').strip(),
+                'telefono': request.POST.get('telefono', '').strip(),
+            }
+            context['values'] = data
+
+            # Validaciones de campos vacíos
+            if not data['nombre']:
+                raise ValueError("El nombre es requerido")
+            if not data['genero_id']:
+                raise ValueError("El género es requerido")
+            if not data['direccion']:
+                raise ValueError("La dirección es requerida")
+            if not data['telefono']:
+                raise ValueError("El teléfono es requerido")
+
+            # Validaciones de longitud
+            if len(data['nombre']) > 100:
+                raise ValueError("El nombre no puede exceder los 100 caracteres")
+            if len(data['direccion']) > 200:
+                raise ValueError("La dirección no puede exceder los 200 caracteres")
+
+            # Validar formato de teléfono
+            validar_telefono(data['telefono'])
+
+            TrabajadorService.actualizar_trabajador(rut, data)
+            return redirect('listar_trabajadores')
+
+        except ValueError as e:
+            context['error'] = str(e)
+            return render(request, 'trabajadores/formulario.html', context)
+        except Exception as e:
+            context['error'] = f"Error al actualizar el trabajador: {str(e)}"
+            return render(request, 'trabajadores/formulario.html', context)
+
+    return render(request, 'trabajadores/formulario.html', context)
 
 def eliminar_trabajador(request, rut):
-    trabajador = TrabajadorService.obtener_trabajador(rut)
+    trabajador = get_object_or_404(Trabajador, rut=rut)
     if request.method == 'POST':
-        TrabajadorService.eliminar_trabajador(rut)
-        return redirect('listar_trabajadores')
+        try:
+            TrabajadorService.eliminar_trabajador(rut)
+            return redirect('listar_trabajadores')
+        except Exception as e:
+            return render(request, 'trabajadores/eliminar.html', {
+                'trabajador': trabajador,
+                'error': f"Error al eliminar el trabajador: {str(e)}"
+            })
     return render(request, 'trabajadores/eliminar.html', {'trabajador': trabajador})
