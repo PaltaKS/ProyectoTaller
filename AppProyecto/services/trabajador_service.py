@@ -45,7 +45,7 @@ class TrabajadorService:
             usuario = UsuarioService.crear_usuario(
                 nombre_usuario=nombre_usuario,
                 trabajador_id=trabajador.rut,  # Usando rut como ID
-                rol_id=1,  # ID del rol por defecto
+                rol_id=3,  # ID del rol por defecto
                 contrasena=contraseña,
                 email=email
             )
