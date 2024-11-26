@@ -45,7 +45,6 @@ def crear_trabajador(request):
                 raise ValueError("El teléfono es requerido")    
             if not data["direccion"]:
                 raise ValueError("La dirección es requerida")
-            
 
             # Validaciones de longitud
             if len(data["nombre"]) > 100:
@@ -60,17 +59,13 @@ def crear_trabajador(request):
             trabajador = TrabajadorService.crear_trabajador(data)
             return redirect('listar_trabajadores')
 
-            
         except ValueError as e:
-            # Error de validación
             context['error'] = str(e)
             return render(request, "trabajadores/formulario.html", context)
         except IntegrityError:
-            # Error de duplicación de RUT
             context['error'] = "Ya existe un trabajador con ese RUT"
             return render(request, "trabajadores/formulario.html", context)
         except Exception as e:
-            # Error general
             context['error'] = f"Ocurrió un error inesperado: {str(e)}"
             return render(request, "trabajadores/formulario.html", context)
 

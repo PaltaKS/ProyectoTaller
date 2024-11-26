@@ -45,7 +45,8 @@
                    value="{% if values.nombre %}{{ values.nombre }}{% else %}{{ trabajador.nombre }}{% endif %}"><br>
 
             <label for="genero">Género:</label>
-            <select name="genero">
+            <select name="genero" required>
+                <option value="">Selecciona un Genero</option>
                 {% for genero in generos %}
                     <option value="{{ genero.id_genero }}" 
                             {% if values.genero_id %}
