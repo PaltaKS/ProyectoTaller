@@ -131,3 +131,13 @@ def eliminar_trabajador(request, rut):
                 'error': f"Error al eliminar el trabajador: {str(e)}"
             })
     return render(request, 'trabajadores/eliminar.html', {'trabajador': trabajador})
+
+
+
+
+def trabajadores_por_genero_view(request):
+    """
+    Vista que pasa los datos del servicio al template HTML.
+    """
+    datos = TrabajadorService.listar_trabajadores_por_genero()
+    return render(request, "ProcidimientosAlmacenados/trabajadores_por_genero.html.html", {"datos": datos})

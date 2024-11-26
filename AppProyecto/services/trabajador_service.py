@@ -43,3 +43,13 @@ class TrabajadorService:
     @staticmethod
     def eliminar_trabajador(rut):
         return TrabajadorRepository.eliminar_trabajador(rut)
+    
+
+    
+
+    def listar_trabajadores_por_genero():
+        """
+        Procesa los datos obtenidos desde el repository si es necesario.
+        """
+        return TrabajadorRepository.obtener_trabajadores_por_genero()
+

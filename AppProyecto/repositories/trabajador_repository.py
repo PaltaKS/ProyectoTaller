@@ -1,6 +1,5 @@
-# mi_app/repositories.py
-
 from AppProyecto.models import Trabajador
+from django.db import connection
 
 class TrabajadorRepository:
 
@@ -32,3 +31,16 @@ class TrabajadorRepository:
         trabajador = TrabajadorRepository.obtener_por_rut(rut)
         if trabajador:
             trabajador.delete()
+
+
+    @staticmethod
+    def obtener_trabajadores_por_genero():
+        """
+        Llama al procedimiento almacenado ContarTrabajadoresPorGenero 
+        y devuelve los resultados como una lista de diccionarios.
+        """
+        with connection.cursor() as cursor:
+            cursor.callproc("ContarTrabajadoresPorGenero")
+            resultados = cursor.fetchall()
+            columnas = [col[0] for col in cursor.description]
+            return [dict(zip(columnas, fila)) for fila in resultados]

@@ -1,5 +1,5 @@
 from django.urls import path
-from AppProyecto.views.trabajador_views import listar_trabajadores, crear_trabajador,actualizar_trabajador, eliminar_trabajador  # Trabajador
+from AppProyecto.views.trabajador_views import listar_trabajadores, crear_trabajador,actualizar_trabajador, eliminar_trabajador, trabajadores_por_genero_view  # Trabajador
 from AppProyecto.views.genero_views import listar_generos, crear_genero, actualizar_genero, eliminar_genero # Genero
 from AppProyecto.views.usuario_view import listar_usuarios, crear_usuario, actualizar_usuario, eliminar_usuario  # Usuarios
 from AppProyecto.views.contacto_emergencia_views import listar_contactos, crear_contacto, editar_contacto, eliminar_contacto  #Contactos de Emergencia
@@ -21,6 +21,7 @@ urlpatterns = [
     path('trabajadores/crear/', crear_trabajador, name='crear_trabajador'),
     path('trabajadores/actualizar/<str:rut>/', actualizar_trabajador, name='actualizar_trabajador'),
     path('trabajadores/eliminar/<str:rut>/', eliminar_trabajador, name='eliminar_trabajador'),
+    path("trabajadores/genero/", trabajadores_por_genero_view, name="trabajadores_por_genero"), ## Procedimiento Almacenado
 
     path('generos/', listar_generos, name='lista_generos'),
     path('generos/crear/', crear_genero, name='crear_genero'),
