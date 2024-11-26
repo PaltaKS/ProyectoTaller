@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Procediminetos Almacenados</title>
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Procedimintos Almacenados</h1>
+        
+        <div class="actions">
+            
+            <a href="{% url 'trabajadores_por_genero' %}"><button>Gestionar Trabajadores Por Genero</button></a>
+                
+        </div>
+        <div class="footer">
+            <a href="{% url 'home' %}"><button>Regresar al Home</button></a>
+        </div>
+    </div>
+</body>
+</html>

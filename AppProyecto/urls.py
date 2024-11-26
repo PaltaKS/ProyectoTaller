@@ -6,7 +6,7 @@ from AppProyecto.views.contacto_emergencia_views import listar_contactos, crear_
 from AppProyecto.views.carga_familiar_views import listar_cargas_familiares, crear_carga_familiar, editar_carga_familiar, eliminar_carga_familiar # Carga Familiar
 from AppProyecto.views.datos_laborales_view import lista_datos_laborales, crear_datos_laborales, editar_datos_laborales, eliminar_datos_laborales # Datos Laborales
 from AppProyecto.views.resetear_contrasena_views import recuperar_contrasena, restablecer_contrasena # Resetear Contrasena
-from AppProyecto.views.home_views import home_view
+from AppProyecto.views.home_views import home_view, procedimiento_almacenado
 from AppProyecto.views.login_views import login_view
 from AppProyecto.views.logout_view import logout_view
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('home/', home_view, name='home'),  # La página de inicio después del login
     path('logout/', logout_view, name='logout'),  # URL para cerrar sesión
+    path('home/procedimientos_almacenados', procedimiento_almacenado, name='procedimiento'),
 
     path('trabajadores/', listar_trabajadores, name='listar_trabajadores'),
     path('trabajadores/crear/', crear_trabajador, name='crear_trabajador'),

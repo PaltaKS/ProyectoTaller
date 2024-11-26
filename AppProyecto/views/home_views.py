@@ -13,3 +13,8 @@ def home_view(request):
         return render(request, 'home.html', {'usuario': usuario})  # Cambia aquí a 'usuario'
     else:
         return redirect('login')
+    
+
+
+def procedimiento_almacenado(request):
+    return render(request, 'ProcidimientosAlmacenados\procedimiento_home.html')
