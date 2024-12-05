@@ -38,7 +38,7 @@ class TrabajadorService:
         try:
             # Crear automáticamente el usuario
             nombre_usuario = f"{trabajador.nombre.split()[0].lower()}{trabajador.rut[:4]}"
-            contraseña = f"inicial{trabajador.rut[:4]}"
+            contraseña = f"12345"
             email = f"{nombre_usuario}@logisticaqk.cl"
             
             # En lugar de crear un diccionario, pasamos los argumentos directamente
