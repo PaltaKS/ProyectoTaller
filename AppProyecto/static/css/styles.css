@@ -1,17 +1,17 @@
 :root {
     /* Definición de variables de color para facilitar el mantenimiento y la coherencia en el diseño */
-    --color-primary: #4A90E2;       /* Color azul principal para los botones */
-    --color-hover: #2C6BB2;         /* Color azul más oscuro para el estado hover de los botones */
-    --color-background: #F0F4F8;    /* Color gris claro para el fondo de la página */
-    --color-text: #333;             /* Color gris oscuro para el texto principal */
-    --color-container-bg: #FFFFFF;  /* Color de fondo blanco para los contenedores */
+    --color-primary: #9ff3f3;       /* Color azul principal para los botones */
+    --color-hover: #5b9e8d;         /* Color azul más oscuro para el estado hover de los botones */
+    --color-background: #4790d8;    /* Color gris claro para el fondo de la página */
+    --color-text: #f1eded;             /* Color gris oscuro para el texto principal */
+    --color-container-bg: linear-gradient(135deg, #0a1931, #16a085);  /* Color de fondo blanco para los contenedores */
     --color-border: #D1D5DB;        /* Color gris claro para los bordes de los elementos */
 }
 
 /* Estilos generales para el cuerpo de la página */
 body {
     font-family: Arial, sans-serif;  /* Tipo de letra para el texto */
-    background-color: var(--color-background);  /* Aplicación del color de fondo definido */
+    background: linear-gradient(135deg, #eff0f1, #16a085);  /* Aplicación del color de fondo definido */
     margin: 0;                       /* Sin margen alrededor del cuerpo */
     padding: 20px;                   /* Espacio interno del cuerpo */
     color: var(--color-text);        /* Color del texto definido anteriormente */
@@ -76,8 +76,8 @@ a {
 
 /* Estilo para los botones */
 button {
-    background-color: var(--color-primary); /* Color de fondo del botón */
-    color: white;                       /* Color del texto en el botón */
+    background-color: #103f36; /* Color de fondo del botón */
+    color: rgb(248, 247, 247);                       /* Color del texto en el botón */
     padding: 6px 12px;                 /* Espaciado interno del botón */
     border-radius: 5px;                /* Bordes redondeados del botón */
     cursor: pointer;                    /* Cambiar el cursor a puntero al pasar el mouse */
@@ -89,7 +89,7 @@ button {
 
 /* Estilo para el efecto hover en los botones */
 button:hover {
-    background-color: var(--color-hover); /* Color de fondo al pasar el mouse sobre el botón */
+    background-color: #134137; /* Color de fondo al pasar el mouse sobre el botón */
 }
 
 /* Estilo para botones mini */
@@ -104,7 +104,7 @@ table button {
     margin: 0 10px;                    /* Espaciado horizontal de los botones dentro de la tabla */
     padding: 5px 10px;                 /* Espaciado interno de los botones de la tabla */
     background-color: var(--color-primary); /* Color de fondo de los botones de la tabla */
-    color: white;                       /* Color del texto en los botones de la tabla */
+    color: rgb(12, 12, 12);                       /* Color del texto en los botones de la tabla */
     border-radius: 4px;                /* Bordes redondeados en los botones de la tabla */
     cursor: pointer;                    /* Cambiar el cursor a puntero al pasar el mouse */
     transition: background-color 0.3s ease; /* Efecto de transición suave para el hover */
@@ -173,7 +173,7 @@ form {
 label {
     display: block;                           /* Hacer que las etiquetas ocupen todo el ancho */
     margin-bottom: 5px;                      /* Margen inferior para separar la etiqueta del campo */
-    color: #666;                              /* Color gris para el texto de la etiqueta */
+    color: #faf9f9;                              /* Color gris para el texto de la etiqueta */
 }
 
 /* Estilos para entradas y selectores */
@@ -213,18 +213,6 @@ strong {
 
 
 /* Estilos para el pie de página */
-footer {
-    width: 100%;                              /* Ancho completo para el pie de página */
-    bottom: 0;                                /* Posicionar en la parte inferior de la página */
-    display: flex;                            /* Usar flexbox para centrar contenido en el pie de página */
-    justify-content: center;                  /* Centrar horizontalmente el contenido del pie de página */
-    position: absolute;                       /* Posicionar de manera absoluta */
-    padding: 10px;                           /* Espaciado interno en el pie de página */
-    background-color: var(--color-primary);  /* Fondo del pie de página usando la variable de color */
-    color: white;                             /* Color del texto del pie de página */
-}
-
-
 
 
 
@@ -289,3 +277,215 @@ footer {
     border: 1px solid red;
 }
     
+.btn-inicio {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-inicio:hover {
+    background-color: #45a049;
+}
+
+/* pagina inicio */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0a1931, #16a085);
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar a {
+    color: #2ecc71;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #27ae60;
+}
+
+.banner {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.banner h1 {
+    color: #2ecc71;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    color: #ecf0f1;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    color: #0a1931;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+
+
+.logout-btn {
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    transform: scale(1.05);
+}
+
+.login-btn {
+    background-color: #00b33c; 
+    color: #fff; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px; /* Bordes redondeados opcionales */
+}
+
+.login-btn:hover {
+    background-color: #00b33c; 
+}
+
+
+#mision {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#mision h2 {
+    color: #2ecc71;
+    margin-bottom: 40px;
+}
+
+.mision-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.mision-item {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 15px;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.mision-item:hover {
+    transform: scale(1.05);
+}
+
+.mision-item img {
+    max-width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.mision-item h3 {
+    color: #2ecc71;
+    margin-bottom: 15px;
+}
+
+#contacto {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#contacto h2 {
+    color: #2ecc71;
+    margin-bottom: 30px;
+}
+
+#contacto form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#contacto input,
+#contacto textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #2ecc71;
+    color: #ecf0f1;
+}
+
+#contacto button {
+    background-color: #2ecc71;
+    color: #0a1931;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contacto button:hover {
+    background-color: #27ae60;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #2ecc71;
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .navbar a {
+        margin: 0 10px;
+    }
+
+    .banner h1 {
+        font-size: 2em;
+    }
+
+    .mision-item {
+        width: 100%;
+    }
+}

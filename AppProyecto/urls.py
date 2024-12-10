@@ -9,13 +9,14 @@ from AppProyecto.views.resetear_contrasena_views import recuperar_contrasena, re
 from AppProyecto.views.home_views import home_view, procedimiento_almacenado
 from AppProyecto.views.login_views import login_view
 from AppProyecto.views.logout_view import logout_view
+from AppProyecto.views.inicio_view import inicio
 
 
 urlpatterns = [
-    path('', login_view, name='login'),
-    path('login/', login_view, name='login'),
-    path('home/', home_view, name='home'),  # La página de inicio después del login
-    path('logout/', logout_view, name='logout'),  # URL para cerrar sesión
+    path('', inicio, name='inicio'),# Página previa al login
+    path('login/', login_view, name='login'),  # Página de login,  
+    path('home/', home_view, name='home'),  # Página principal después del login
+    path('logout/', logout_view, name='logout'),
     path('home/procedimientos_almacenados', procedimiento_almacenado, name='procedimiento'),
 
     path('trabajadores/', listar_trabajadores, name='listar_trabajadores'),
